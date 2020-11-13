@@ -14,8 +14,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
-
-
         app:srcCompat="@drawable/timer_icon" />
 
 
@@ -227,3 +225,4 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--    android:background="#FFFFFF"-->
+    <!-- hello -->
