@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/timerIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/timer_icon" />
+
+    <ImageView
+        android:id="@+id/inputIdBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerIcon"
+        app:srcCompat="@drawable/id_input" />
+
+    <EditText
+        android:id="@+id/inputIdText"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+
+        android:layout_marginTop="11dp"
+
+        android:background="@android:color/transparent"
+        android:inputType="textEmailAddress"
+
+        android:hint="ID"
+        android:selectAllOnFocus="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/htt_right"
+
+        app:layout_constraintStart_toStartOf="@+id/inputIdBox"
+        app:layout_constraintTop_toTopOf="@+id/inputIdBox" />
+
+
+    <ImageView
+        android:id="@+id/inputPwdBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/inputIdBox"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputIdBox"
+        app:layout_constraintTop_toBottomOf="@+id/inputIdBox"
+        app:srcCompat="@drawable/pwd_input" />
+
+    <EditText
+        android:id="@+id/inputPwdText"
+        android:layout_width="wrap_content"
+
+        android:layout_height="24dp"
+
+        android:layout_marginStart="50dp"
+
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="11dp"
+        android:background="@android:color/transparent"
+
+        android:inputType="textPassword"
+
+        android:hint="Password"
+        android:selectAllOnFocus="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/htt_right"
+        app:layout_constraintStart_toStartOf="@+id/inputPwdBox"
+        app:layout_constraintTop_toTopOf="@+id/inputPwdBox" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="로그인"
+        app:backgroundTint="@color/htt_right"
+        app:layout_constraintEnd_toEndOf="@+id/inputPwdBox"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputPwdBox"
+        app:layout_constraintTop_toBottomOf="@+id/inputPwdBox" />
+
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+
+        android:text="회원가입"
+        android:textColor="@color/htt_right"
+        android:textSize="10sp"
+        app:backgroundTint="#FFFFFF"
+        app:iconTint="#E91E63"
+        app:layout_constraintEnd_toStartOf="@+id/findIdPwd"
+        app:layout_constraintStart_toStartOf="@+id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+    <Button
+        android:id="@+id/findIdPwd"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+
+        android:layout_marginTop="16dp"
+        android:text="이메일/비밀번호 찾기"
+        android:textColor="@color/htt_right"
+        android:textSize="10sp"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/loginBtn"
+        app:layout_constraintStart_toEndOf="@+id/signUpBtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+    <TextView
+        android:id="@+id/easyLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="간편로그인"
+        android:textColor="#D4D6E6"
+        app:layout_constraintBottom_toTopOf="@+id/facebookBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/facebookBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/facebook_login_btn" />
+
+    <ImageView
+        android:id="@+id/googleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/google_login_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    android:background="#FFFFFF"-->
