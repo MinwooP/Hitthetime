@@ -1,5 +1,6 @@
-#Rule
+# Rule
 
-- Pascal Casing
+- Pascal Casing * 
+- Camel Casing
 
  
