@@ -139,6 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <ImageView
         android:id="@+id/facebookBtn"
         android:layout_width="wrap_content"
@@ -148,6 +149,18 @@
         app:layout_constraintEnd_toEndOf="@+id/googleBtn"
         app:layout_constraintStart_toStartOf="@+id/googleBtn"
         app:srcCompat="@drawable/facebook_login_btn" />
+
+<!--
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebookBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
+        app:layout_constraintEnd_toEndOf="@+id/googleBtn"
+        app:layout_constraintStart_toStartOf="@+id/googleBtn"
+        app:srcCompat="@drawable/facebook_login_btn" />
+-->
 
     <ImageView
         android:id="@+id/googleBtn"
