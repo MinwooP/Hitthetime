@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/timerIcon" />
 
-     <EditText
+     <EditText  
         android:id="@+id/pwdText"
         android:layout_width="0dp"
         android:layout_height="50dp"
