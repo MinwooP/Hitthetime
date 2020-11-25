@@ -38,9 +38,6 @@ import java.util.Arrays;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
-    private CallbackManager mCallbackManager;
-    private FirebaseAuth mFirebaseAuth;
 
     ImageView loginButton;
 
@@ -50,117 +47,17 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        loginButton = findViewById(R.id.touchScreen) ;
+        loginButton = findViewById(R.id.touchScreen);
 
-        loginButton.setOnClickListener(new View.OnClickListener(){
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
 
                 Intent intent = new Intent(MainActivity.this, LoginActivity_sec.class);
                 startActivity(intent);
 
             }
         });
-        mFirebaseAuth = FirebaseAuth.getInstance();
-
-        mCallbackManager = CallbackManager.Factory.create();
-
-        LoginButton loginButton = findViewById(R.id.facebookBtn);
-
-        //Setting the permission that we need to read
-        loginButton.setReadPermissions("public_profile","email", "user_birthday");
-
-        //Registering callback!
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                //Sign in completed
-                Log.i(TAG, "onSuccess: logged in successfully");
-
-                //handling the token for Firebase Auth
-                handleFacebookAccessToken(loginResult.getAccessToken());
-
-                //Getting the user information
-                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        // Application code
-                        Log.i(TAG, "onCompleted: response: " + response.toString());
-                        try {
-                            String email = object.getString("email");
-                            String birthday = object.getString("birthday");
-
-                            Log.i(TAG, "onCompleted: Email: " + email);
-                            Log.i(TAG, "onCompleted: Birthday: " + birthday);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.i(TAG, "onCompleted: JSON exception");
-                        }
-                    }
-                });
-
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender,birthday");
-                request.setParameters(parameters);
-                request.executeAsync();
-
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-            }
-        });
-
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mFirebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                            Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-        if (currentUser != null) {
-            Log.i(TAG, "onStart: Someone logged in <3");
-        } else {
-            Log.i(TAG, "onStart: No one logged in :/");
-        }
-    }
 }
