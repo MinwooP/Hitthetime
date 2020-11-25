@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">hitthetime to androd</string>
-    <string name="facebook_app_id">358273865505990</string> <string name="fb_login_protocol_scheme">fb358273865505990</string>
+    <string name="facebook_app_id">204463224537271</string>
+    <string name="fb_login_protocol_scheme">fb204463224537271</string>
 
 </resources>
