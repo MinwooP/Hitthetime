@@ -140,7 +140,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <com.facebook.login.widget.LoginButton
+    <ImageView
         android:id="@+id/facebookBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
