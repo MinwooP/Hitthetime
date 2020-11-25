@@ -17,7 +17,6 @@
         app:srcCompat="@drawable/timer_icon" />
 
 
-
     <EditText
         android:id="@+id/emailText"
         android:layout_width="0dp"
@@ -40,7 +39,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/timerIcon" />
 
-    <EditText
+     <EditText
         android:id="@+id/pwdText"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -140,7 +139,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/facebookBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -149,6 +149,18 @@
         app:layout_constraintEnd_toEndOf="@+id/googleBtn"
         app:layout_constraintStart_toStartOf="@+id/googleBtn"
         app:srcCompat="@drawable/facebook_login_btn" />
+
+<!--
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebookBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
+        app:layout_constraintEnd_toEndOf="@+id/googleBtn"
+        app:layout_constraintStart_toStartOf="@+id/googleBtn"
+        app:srcCompat="@drawable/facebook_login_btn" />
+-->
 
     <ImageView
         android:id="@+id/googleBtn"
