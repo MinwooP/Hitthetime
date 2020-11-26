@@ -191,8 +191,8 @@ public class LoginActivity_sec extends AppCompatActivity {
 
     //when the signIn Button is clicked then start the signIn Intent
     private void signInM() {
-        Intent singInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(singInIntent,RESULT_CODE_SINGIN);
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent,RESULT_CODE_SINGIN);
     }
 
 
@@ -203,7 +203,7 @@ public class LoginActivity_sec extends AppCompatActivity {
         //we use try catch block because of Exception.
         try {
             googleSignInBtn.setVisibility(View.INVISIBLE);
-            GoogleSignInAccount account = task.getResult(ApiException.class);
+            GoogleSignInAccount account = task.getResult(ApiException.class); //error
             Toast.makeText(LoginActivity_sec.this,"Signed In successfully",Toast.LENGTH_LONG).show();
             //SignIn successful now show authentication
             FirebaseGoogleAuth(account);
@@ -284,15 +284,23 @@ public class LoginActivity_sec extends AppCompatActivity {
     // onActivityResult (Here we handle the result of the Activity )
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
+
 
         if (requestCode == RESULT_CODE_SINGIN) {        //just to verify the code
             //create a Task object and use GoogleSignInAccount from Intent and write a separate method to handle singIn Result.
-
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            super.onActivityResult(requestCode, resultCode, data);
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data); // task error
             handleSignInResult(task);
+
         }
+        else{
+
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
+            super.onActivityResult(requestCode, resultCode, data);
+
+        }
+
+
     }
 
     @Override
