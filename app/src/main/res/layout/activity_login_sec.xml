@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/timerIcon" />
 
-     <EditText
+    <EditText
         android:id="@+id/pwdText"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -93,11 +93,11 @@
 
     <Button
         android:id="@+id/signUpBtn"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
 
-        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginTop="8dp"
 
         android:text="회원가입"
         android:textColor="@color/htt_right"
@@ -111,11 +111,11 @@
 
     <Button
         android:id="@+id/findIdPwd"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
 
-        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginTop="8dp"
 
         android:text="이메일/비밀번호 찾기"
         android:textColor="@color/htt_right"
@@ -140,17 +140,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/facebookBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
-        app:layout_constraintEnd_toEndOf="@+id/googleBtn"
-        app:layout_constraintStart_toStartOf="@+id/googleBtn"
-        app:srcCompat="@drawable/facebook_login_btn" />
-
-<!--
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebookBtn"
         android:layout_width="wrap_content"
@@ -160,7 +149,41 @@
         app:layout_constraintEnd_toEndOf="@+id/googleBtn"
         app:layout_constraintStart_toStartOf="@+id/googleBtn"
         app:srcCompat="@drawable/facebook_login_btn" />
--->
+
+    <!--
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebookBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/googleBtn"
+            app:layout_constraintEnd_toEndOf="@+id/googleBtn"
+            app:layout_constraintStart_toStartOf="@+id/googleBtn"
+            app:srcCompat="@drawable/facebook_login_btn" />
+    -->
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleSignInBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="540dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/googleSignOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sign out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googleSignInBtn"
+        app:layout_constraintVertical_bias="0.258" />
+
 
     <ImageView
         android:id="@+id/googleBtn"
@@ -231,7 +254,6 @@
         app:layout_constraintBottom_toTopOf="@+id/facebookBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/easyLogin" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
