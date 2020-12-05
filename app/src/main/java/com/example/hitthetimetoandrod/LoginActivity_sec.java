@@ -38,8 +38,14 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 
 public class LoginActivity_sec extends AppCompatActivity {
+
+
     private static final String TAG = "LoginActivity_sec";
     private CallbackManager mCallbackManager;
     private FirebaseAuth mFirebaseAuth_facebook;
@@ -286,5 +292,7 @@ public class LoginActivity_sec extends AppCompatActivity {
             Log.i(TAG, "onStart: No one logged in :/");
         }
     }
+
+
 }
 
