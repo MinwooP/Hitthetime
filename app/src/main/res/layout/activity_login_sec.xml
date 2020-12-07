@@ -142,13 +142,16 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebookBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="291dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/googleBtn"
         app:layout_constraintEnd_toEndOf="@+id/googleBtn"
-        app:layout_constraintStart_toStartOf="@+id/googleBtn"
-        app:srcCompat="@drawable/facebook_login_btn" />
+        app:layout_constraintStart_toStartOf="@+id/googleBtn"/>
 
     <!--
         <com.facebook.login.widget.LoginButton
@@ -166,7 +169,7 @@
         android:id="@+id/googleSignInBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="540dp"
+        android:layout_marginTop="460dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

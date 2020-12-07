@@ -33,7 +33,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:17.2.2'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation 'com.facebook.android:facebook-android-sdk:8.1.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
