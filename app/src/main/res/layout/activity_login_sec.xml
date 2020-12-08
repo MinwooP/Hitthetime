@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -139,8 +140,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
-    <com.facebook.login.widget.LoginButton
+    <Button
         android:id="@+id/facebookBtn"
         android:layout_width="291dp"
         android:layout_height="40dp"
@@ -151,8 +151,23 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/googleBtn"
         app:layout_constraintEnd_toEndOf="@+id/googleBtn"
-        app:layout_constraintStart_toStartOf="@+id/googleBtn"/>
+        app:layout_constraintStart_toStartOf="@+id/googleBtn" />
 
+
+    <!--
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebookBtn"
+            android:layout_width="291dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/googleBtn"
+            app:layout_constraintEnd_toEndOf="@+id/googleBtn"
+            app:layout_constraintStart_toStartOf="@+id/googleBtn" />
+    -->
     <!--
         <com.facebook.login.widget.LoginButton
             android:id="@+id/facebookBtn"
@@ -260,6 +275,8 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <!--    android:background="#FFFFFF"-->
     <!-- hello -->

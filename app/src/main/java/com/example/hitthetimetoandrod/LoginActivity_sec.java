@@ -14,8 +14,10 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -106,20 +108,19 @@ public class LoginActivity_sec extends AppCompatActivity {
         });
 
 
+
         /*
          * facebook login
          */
-
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
         mFirebaseAuth_facebook = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
 
-        LoginButton loginButton = findViewById(R.id.facebookBtn);
+        Button loginButton = findViewById(R.id.facebookBtn);
 
-        //Setting the permission that we need to read
-        loginButton.setReadPermissions("public_profile","email", "user_birthday");
 
         //Registering callback!
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 //Sign in completed
@@ -164,6 +165,15 @@ public class LoginActivity_sec extends AppCompatActivity {
             @Override
             public void onError(FacebookException error) {
                 Log.d(TAG, "facebook:onError", error);
+            }
+        });
+
+        //Setting the permission that we need to read
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity_sec.this, Arrays.asList("public_profile", "email", "user_birthday"));
             }
         });
     }
