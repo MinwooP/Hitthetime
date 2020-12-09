@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,161 +18,29 @@
         app:srcCompat="@drawable/timer_icon" />
 
 
-    <EditText
-        android:id="@+id/emailText"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="48dp"
 
-        android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/custom_email_icon"
-
-        android:drawableLeft="@drawable/ic_email"
-        android:drawablePadding="12dp"
-        android:hint="email_address"
-        android:inputType="textEmailAddress"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-
-
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/timerIcon" />
-
-    <EditText
-        android:id="@+id/pwdText"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-
-        android:layout_marginTop="10dp"
-
-        android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/custom_lock_icon"
-        android:drawableLeft="@drawable/ic_lock"
-        android:drawablePadding="12dp"
-        android:hint="password"
-        android:inputType="textPassword"
-
-
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
-
-    <CheckBox
-        android:id="@+id/loginCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:buttonTint="#000000"
-        android:text="로그인 상태 유지"
-
-        android:textColor="@android:color/darker_gray"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        app:buttonTint="@color/htt_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/pwdText" />
-
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-
-        android:text="로그인"
-        android:textSize="14sp"
-        app:backgroundTint="@color/htt_right"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/loginCheckBox" />
-
-    <Button
-        android:id="@+id/signUpBtn"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-
-        android:layout_marginTop="8dp"
-
-        android:text="회원가입"
-        android:textColor="@color/htt_right"
-        android:textSize="11sp"
-
-        app:backgroundTint="#FFFFFF"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/findIdPwd"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
-
-    <Button
-        android:id="@+id/findIdPwd"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-
-        android:layout_marginTop="8dp"
-
-        android:text="이메일/비밀번호 찾기"
-        android:textColor="@color/htt_right"
-        android:textSize="11sp"
-
-        app:backgroundTint="#FFFFFF"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/signUpBtn"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
-
-    <TextView
-        android:id="@+id/easyLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="간편로그인"
-        android:textColor="@android:color/darker_gray"
-
-        app:layout_constraintBottom_toTopOf="@+id/facebookBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <com.facebook.login.widget.LoginButton
+    <ImageButton
         android:id="@+id/facebookBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
-        app:layout_constraintEnd_toEndOf="@+id/googleBtn"
-        app:layout_constraintStart_toStartOf="@+id/googleBtn"
-        app:srcCompat="@drawable/facebook_login_btn" />
-
-    <!--
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/facebookBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/googleBtn"
-            app:layout_constraintEnd_toEndOf="@+id/googleBtn"
-            app:layout_constraintStart_toStartOf="@+id/googleBtn"
-            app:srcCompat="@drawable/facebook_login_btn" />
-    -->
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignInBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="540dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="296dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/facebook_login_btn"
+        app:layout_constraintBottom_toTopOf="@+id/googleSignInBtn"
+        app:layout_constraintEnd_toEndOf="@+id/googleSignInBtn"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/googleSignInBtn" />
+
+    <ImageButton
+        android:id="@+id/googleSignInBtn"
+        android:layout_width="296dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="440dp"
+        android:src="@drawable/google_login_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+<!--
     <Button
         android:id="@+id/googleSignOutBtn"
         android:layout_width="wrap_content"
@@ -183,17 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/googleSignInBtn"
         app:layout_constraintVertical_bias="0.258" />
-
-
-    <ImageView
-        android:id="@+id/googleBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/google_login_btn" />
+        -->
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -257,6 +116,8 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <!--    android:background="#FFFFFF"-->
     <!-- hello -->

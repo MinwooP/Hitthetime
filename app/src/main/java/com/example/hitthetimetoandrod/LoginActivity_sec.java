@@ -8,14 +8,17 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,8 +54,8 @@ public class LoginActivity_sec extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth_facebook;
 
     private FirebaseAuth mFirebaseAuth_google;
-    private SignInButton googleSignInBtn;
-    private Button googleSignOutBtn;
+    private ImageButton googleSignInBtn;
+
     private GoogleSignInClient googleSignInClient;
 
     private int RESULT_CODE_SINGIN=999;
@@ -68,8 +71,10 @@ public class LoginActivity_sec extends AppCompatActivity {
 
         //Initialization
         googleSignInBtn = findViewById(R.id.googleSignInBtn);
-        googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
-        googleSignOutBtn.setVisibility(View.INVISIBLE);
+
+        //signout button
+        //googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
+        //googleSignOutBtn.setVisibility(View.INVISIBLE);
 
         mFirebaseAuth_google = FirebaseAuth.getInstance();
 
@@ -94,6 +99,8 @@ public class LoginActivity_sec extends AppCompatActivity {
             }
         });
 
+
+        /* google signout code
         //Attach a onClickListener
         googleSignOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,22 +111,20 @@ public class LoginActivity_sec extends AppCompatActivity {
                 Toast.makeText(LoginActivity_sec.this,"you are logged out",Toast.LENGTH_LONG).show();
             }
         });
+        */
 
 
         /*
          * facebook login
          */
-
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
         mFirebaseAuth_facebook = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
 
-        LoginButton loginButton = findViewById(R.id.facebookBtn);
-
-        //Setting the permission that we need to read
-        loginButton.setReadPermissions("public_profile","email", "user_birthday");
+        ImageButton loginButton = findViewById(R.id.facebookBtn);
 
         //Registering callback!
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 //Sign in completed
@@ -140,6 +145,7 @@ public class LoginActivity_sec extends AppCompatActivity {
 
                             Log.i(TAG, "onCompleted: Name: " + name);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -165,6 +171,16 @@ public class LoginActivity_sec extends AppCompatActivity {
                 Log.d(TAG, "facebook:onError", error);
             }
         });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Setting the permission that we need to read
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity_sec.this, Arrays.asList("public_profile", "email", "user_birthday"));
+
+            }
+        });
     }
 
     //when the signIn Button is clicked then start the signIn Intent
@@ -180,7 +196,7 @@ public class LoginActivity_sec extends AppCompatActivity {
 
         //we use try catch block because of Exception.
         try {
-            googleSignInBtn.setVisibility(View.INVISIBLE);
+            //googleSignInBtn.setVisibility(View.INVISIBLE);
             GoogleSignInAccount account = task.getResult(ApiException.class); //error
             Toast.makeText(LoginActivity_sec.this,"Signed In successfully",Toast.LENGTH_LONG).show();
             //SignIn successful now show authentication
@@ -205,6 +221,7 @@ public class LoginActivity_sec extends AppCompatActivity {
                     Toast.makeText(LoginActivity_sec.this,"successful",Toast.LENGTH_LONG).show();
                     FirebaseUser firebaseUser = mFirebaseAuth_google.getCurrentUser();
                     UpdateUI(firebaseUser);
+
                 }
                 else {
                     Toast.makeText(LoginActivity_sec.this,"Failed!",Toast.LENGTH_LONG).show();
@@ -216,7 +233,7 @@ public class LoginActivity_sec extends AppCompatActivity {
 
     //Inside UpdateUI we can get the user information and display it when required
     private void UpdateUI(FirebaseUser fUser) {
-        googleSignOutBtn.setVisibility(View.VISIBLE);
+        //googleSignOutBtn.setVisibility(View.VISIBLE);
 
         //getLastSignedInAccount returned the account
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
