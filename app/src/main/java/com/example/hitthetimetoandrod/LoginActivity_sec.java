@@ -55,11 +55,11 @@ public class LoginActivity_sec extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth_google;
     private ImageButton googleSignInBtn;
-    private Button googleSignOutBtn;
+
     private GoogleSignInClient googleSignInClient;
 
     private int RESULT_CODE_SINGIN=999;
-    private FacebookLoginCB mFacebookLoginCB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +71,10 @@ public class LoginActivity_sec extends AppCompatActivity {
 
         //Initialization
         googleSignInBtn = findViewById(R.id.googleSignInBtn);
-        googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
-        googleSignOutBtn.setVisibility(View.INVISIBLE);
+
+        //signout button
+        //googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
+        //googleSignOutBtn.setVisibility(View.INVISIBLE);
 
         mFirebaseAuth_google = FirebaseAuth.getInstance();
 
@@ -97,6 +99,8 @@ public class LoginActivity_sec extends AppCompatActivity {
             }
         });
 
+
+        /* google signout code
         //Attach a onClickListener
         googleSignOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +111,7 @@ public class LoginActivity_sec extends AppCompatActivity {
                 Toast.makeText(LoginActivity_sec.this,"you are logged out",Toast.LENGTH_LONG).show();
             }
         });
-
+        */
 
 
         /*
@@ -118,7 +122,6 @@ public class LoginActivity_sec extends AppCompatActivity {
         mCallbackManager = CallbackManager.Factory.create();
 
         ImageButton loginButton = findViewById(R.id.facebookBtn);
-        mFacebookLoginCB = new FacebookLoginCB(mFirebaseAuth_facebook);
 
         //Registering callback!
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
@@ -193,7 +196,7 @@ public class LoginActivity_sec extends AppCompatActivity {
 
         //we use try catch block because of Exception.
         try {
-            googleSignInBtn.setVisibility(View.INVISIBLE);
+            //googleSignInBtn.setVisibility(View.INVISIBLE);
             GoogleSignInAccount account = task.getResult(ApiException.class); //error
             Toast.makeText(LoginActivity_sec.this,"Signed In successfully",Toast.LENGTH_LONG).show();
             //SignIn successful now show authentication
@@ -230,7 +233,7 @@ public class LoginActivity_sec extends AppCompatActivity {
 
     //Inside UpdateUI we can get the user information and display it when required
     private void UpdateUI(FirebaseUser fUser) {
-        googleSignOutBtn.setVisibility(View.VISIBLE);
+        //googleSignOutBtn.setVisibility(View.VISIBLE);
 
         //getLastSignedInAccount returned the account
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
