@@ -59,7 +59,7 @@ public class LoginActivity_sec extends AppCompatActivity {
     private GoogleSignInClient googleSignInClient;
 
     private int RESULT_CODE_SINGIN=999;
-
+    private FacebookLoginCB mFacebookLoginCB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +118,7 @@ public class LoginActivity_sec extends AppCompatActivity {
         mCallbackManager = CallbackManager.Factory.create();
 
         ImageButton loginButton = findViewById(R.id.facebookBtn);
-
+        mFacebookLoginCB = new FacebookLoginCB(mFirebaseAuth_facebook);
 
         //Registering callback!
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
@@ -169,12 +169,13 @@ public class LoginActivity_sec extends AppCompatActivity {
             }
         });
 
-        //Setting the permission that we need to read
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Setting the permission that we need to read
                 LoginManager.getInstance().logInWithReadPermissions(LoginActivity_sec.this, Arrays.asList("public_profile", "email", "user_birthday"));
+
             }
         });
     }
