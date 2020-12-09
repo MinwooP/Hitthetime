@@ -135,23 +135,9 @@
         android:layout_marginBottom="16dp"
         android:text="간편로그인"
         android:textColor="@android:color/darker_gray"
-
         app:layout_constraintBottom_toTopOf="@+id/facebookBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/facebookBtn"
-        android:layout_width="291dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif"
-        android:textAllCaps="true"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
-        app:layout_constraintEnd_toEndOf="@+id/googleBtn"
-        app:layout_constraintStart_toStartOf="@+id/googleBtn" />
 
 
     <!--
@@ -180,13 +166,25 @@
             app:srcCompat="@drawable/facebook_login_btn" />
     -->
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignInBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="460dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageButton
+        android:id="@+id/facebookBtn"
+        android:layout_width="296dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/facebook_login_btn"
+        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
+        app:layout_constraintEnd_toEndOf="@+id/googleBtn"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/googleBtn" />
+
+    <ImageButton
+        android:id="@+id/googleSignInBtn"
+        android:layout_width="296dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="440dp"
+        android:src="@drawable/google_login_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

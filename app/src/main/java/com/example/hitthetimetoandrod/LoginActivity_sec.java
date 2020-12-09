@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -53,7 +54,7 @@ public class LoginActivity_sec extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth_facebook;
 
     private FirebaseAuth mFirebaseAuth_google;
-    private SignInButton googleSignInBtn;
+    private ImageButton googleSignInBtn;
     private Button googleSignOutBtn;
     private GoogleSignInClient googleSignInClient;
 
@@ -116,7 +117,7 @@ public class LoginActivity_sec extends AppCompatActivity {
         mFirebaseAuth_facebook = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
 
-        Button loginButton = findViewById(R.id.facebookBtn);
+        ImageButton loginButton = findViewById(R.id.facebookBtn);
 
 
         //Registering callback!

@@ -23,10 +23,14 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.concurrent.Executor;
+
 
 public class FacebookLoginCB implements FacebookCallback<LoginResult>{
-    @Override
+
     private static final String TAG = "FacebookLoginCB";
+
+    @Override
     public void onSuccess(LoginResult loginResult) {
         //Sign in completed
         Log.i(TAG, "onSuccess: logged in successfully");
@@ -51,6 +55,7 @@ public class FacebookLoginCB implements FacebookCallback<LoginResult>{
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.i(TAG, "onCompleted: JSON exception");
+
                 }
             }
         });
@@ -81,7 +86,7 @@ public class FacebookLoginCB implements FacebookCallback<LoginResult>{
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mFirebaseAuth_facebook.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -93,8 +98,8 @@ public class FacebookLoginCB implements FacebookCallback<LoginResult>{
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity_sec.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(, "Authentication failed.",
+                            //Toast.LENGTH_SHORT).show();
                         }
 
                         // ...
