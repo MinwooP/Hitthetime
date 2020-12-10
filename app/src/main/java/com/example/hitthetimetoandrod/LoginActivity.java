@@ -34,11 +34,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -135,11 +139,20 @@ public class LoginActivity extends AppCompatActivity {
                         // Application code
                         Log.i(TAG, "onCompleted: response: " + response.toString());
                         try {
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference databaseRef = database.getReference();
+
+                            String id = object.getString("id");
                             String name = object.getString("name");
                             String birthday = object.getString("birthday");
 
+                            Log.i(TAG, "onCompleted: Id: " + id);
                             Log.i(TAG, "onCompleted: Name: " + name);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
+
+                            FirebasePost post = new FirebasePost(id, name, 0, birthday);
+                            databaseRef.child("users").child(id).setValue(post.toMap());
+
                             Intent intent = new Intent(LoginActivity.this, GameActivity.class);
                             startActivity(intent);
 
@@ -239,6 +252,15 @@ public class LoginActivity extends AppCompatActivity {
             String personGivenName = account.getGivenName();
             String personEmail = account.getEmail();
             String personId = account.getId();
+
+
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference databaseRef = database.getReference();
+
+            FirebasePost post = new FirebasePost(personId, personName, 0, "");
+            databaseRef.child("users").child(personId).setValue(post.toMap());
+
 
             Toast.makeText(LoginActivity.this,personName + "  " + personEmail,Toast.LENGTH_LONG).show();
         }
