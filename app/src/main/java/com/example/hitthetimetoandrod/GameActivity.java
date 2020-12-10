@@ -14,19 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class GameActivity extends AppCompatActivity {
 
+public class GameActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNV;
-    Button loginButton;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-
-public class GameActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private GameFragment gameFragment;
     private FragmentTransaction transaction;
@@ -77,14 +68,5 @@ public class GameActivity extends AppCompatActivity {
         fragmentTransaction.setReorderingAllowed(true);
         fragmentTransaction.commitNow();
 
-    }
-
-
-
-        fragmentManager = getSupportFragmentManager();
-
-        gameFragment = new GameFragment();
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameLayout, gameFragment).commitAllowingStateLoss();
     }
 }
