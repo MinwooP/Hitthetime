@@ -140,7 +140,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             Log.i(TAG, "onCompleted: Name: " + name);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
-
+                            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+                            startActivity(intent);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -216,7 +217,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"successful",Toast.LENGTH_LONG).show();
                     FirebaseUser firebaseUser = mFirebaseAuth_google.getCurrentUser();
                     UpdateUI(firebaseUser);
-
+                    Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(LoginActivity.this,"Failed!",Toast.LENGTH_LONG).show();
