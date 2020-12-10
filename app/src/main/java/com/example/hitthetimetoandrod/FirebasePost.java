@@ -14,16 +14,18 @@ public class FirebasePost {
     public String name;
     public int score;
     public String birthday;
+    public String loginType;
 
     public FirebasePost(){
         // Default constructor required for calls to DataSnapshot.getValue(FirebasePost.class)
     }
 
-    public FirebasePost(String id, String name, int score, String birthday) {
+    public FirebasePost(String id, String name, int score, String birthday, String loginType) {
         this.id = id;
         this.name = name;
         this.score = score;
         this.birthday = birthday;
+        this.loginType = loginType;
     }
 
     @Exclude
@@ -33,6 +35,7 @@ public class FirebasePost {
         result.put("name", name);
         result.put("score", score);
         result.put("birthday", birthday);
+        result.put("loginType", loginType);
         return result;
     }
 }

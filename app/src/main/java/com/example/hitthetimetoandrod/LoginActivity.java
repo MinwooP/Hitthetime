@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.i(TAG, "onCompleted: Name: " + name);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
 
-                            FirebasePost post = new FirebasePost(id, name, 0, birthday);
+                            FirebasePost post = new FirebasePost(id, name, 0, birthday, "facebook");
                             databaseRef.child("users").child(id).setValue(post.toMap());
 
                             Intent intent = new Intent(LoginActivity.this, GameActivity.class);
@@ -258,7 +258,7 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference databaseRef = database.getReference();
 
-            FirebasePost post = new FirebasePost(personId, personName, 0, "");
+            FirebasePost post = new FirebasePost(personId, personName, 0, "", "google");
             databaseRef.child("users").child(personId).setValue(post.toMap());
 
 
