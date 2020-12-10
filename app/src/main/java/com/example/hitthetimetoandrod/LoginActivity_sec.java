@@ -140,7 +140,8 @@ public class LoginActivity_sec extends AppCompatActivity {
 
                             Log.i(TAG, "onCompleted: Name: " + name);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
-
+                            Intent intent = new Intent(LoginActivity_sec.this, GameActivity.class);
+                            startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.i(TAG, "onCompleted: JSON exception");
@@ -205,6 +206,8 @@ public class LoginActivity_sec extends AppCompatActivity {
                     Toast.makeText(LoginActivity_sec.this,"successful",Toast.LENGTH_LONG).show();
                     FirebaseUser firebaseUser = mFirebaseAuth_google.getCurrentUser();
                     UpdateUI(firebaseUser);
+                    Intent intent = new Intent(LoginActivity_sec.this, GameActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(LoginActivity_sec.this,"Failed!",Toast.LENGTH_LONG).show();
