@@ -52,11 +52,11 @@ public class GameActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment == null) {
             if (id == R.id.navigation_game) {
-                fragment = new TimeActivity();
+                fragment = new GameFragment();
 
             } else if (id == R.id.navigation_rank){
 
-                fragment = new RankActivity();
+                fragment = new RankFragment();
             }
 
             fragmentTransaction.add(R.id.frameLayouts, fragment, tag);
