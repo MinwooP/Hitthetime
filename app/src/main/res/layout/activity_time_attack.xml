@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimeAttackActivity">
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".GameFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".GameFragment"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="-134dp">
+
+            <!-- TODO: Update blank fragment layout -->
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="95dp"
+                android:layout_height="101dp"
+                android:layout_marginTop="40dp"
+                android:foregroundGravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_goalTime"
+                app:lottie_autoPlay="true" />
+
+            <TextView
+                android:id="@+id/text_title_nowTime"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="NOW TIME"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_nowTime"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="00:00"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_title_nowTime" />
+
+            <TextView
+                android:id="@+id/text_title_goalTime"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="GOAL"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_nowTime">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/text_goalTime"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="00:00"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_title_goalTime" />
+
+
+            <Button
+                android:id="@+id/btn_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="68dp"
+                android:layout_marginRight="68dp"
+                android:gravity="center"
+                android:text="Stop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/btn_start"
+                app:layout_constraintTop_toBottomOf="@+id/score5" />
+
+            <Button
+                android:id="@+id/btn_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="68dp"
+                android:layout_marginLeft="68dp"
+                android:gravity="center"
+                android:text="START"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/score4" />
+
+            <TextView
+                android:id="@+id/score1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/score2"
+                app:layout_constraintStart_toStartOf="@+id/btn_start"
+                app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+
+            <TextView
+                android:id="@+id/score2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+
+            <TextView
+                android:id="@+id/score3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_stop"
+                app:layout_constraintStart_toEndOf="@+id/score2"
+                app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+
+            <TextView
+                android:id="@+id/score4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="12dp"
+                android:text="TextView"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/btn_start"
+                app:layout_constraintTop_toBottomOf="@+id/score2" />
+
+            <TextView
+                android:id="@+id/score5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_stop"
+                app:layout_constraintTop_toBottomOf="@+id/score2" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
