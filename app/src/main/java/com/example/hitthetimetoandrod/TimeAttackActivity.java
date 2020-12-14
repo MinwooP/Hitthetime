@@ -151,11 +151,21 @@ public class TimeAttackActivity extends AppCompatActivity {
             UpdateTime = TimeBuff + MillisecondTime;
             Seconds = (int) (UpdateTime / 1000);
             Seconds = Seconds%60;
+            if(Seconds > 9){
+                btn_Stop.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn_Stop.performClick();
+                    }
+                });
+
+            }
             MilliSeconds = (int) (UpdateTime % 100);
             text_Now.setText(
                     String.format("%01d", Seconds) + ":"
                             + String.format("%02d", MilliSeconds));
             handler.postDelayed(this, 0);
+
         }
     };
 
