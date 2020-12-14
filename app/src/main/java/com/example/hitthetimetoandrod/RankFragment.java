@@ -68,10 +68,14 @@ public class RankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        View view1 = inflater.inflate(R.layout.fragment_rank, container, false);
         /* activity에서 fragment로 넘어오면서 mRecyclerView = findViewById(R.id.recycler1);
         * 아래 문장으로 바꾸어줌 */
-        mRecyclerView = container.findViewById(R.id.recycler1) ;
+
+        mRecyclerView = (RecyclerView) view1.findViewById(R.id.recycler1);
+        /* mRecyclerView = container.findViewById(R.id.recycler1) ;
+           원래 이 코드로 해서 오류 났었음 ;;
+         */
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         mAdapter = new RecyclerTextAdapter(mList);
@@ -81,11 +85,11 @@ public class RankFragment extends Fragment {
         /* Activity에서 fragment로 코드 이동할 때, this -> getActivity로 바꿔주었음 */
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity())) ;
 
+
+        // DB와 연결해서 기록들 비교한다음에 TOP 10 가져온뒤 여기서 정렬 후 아이템 추가
         // 아이템 추가.
         mAdapter.addItem("1", "Box", "109957") ;
-        // 두 번째 아이템 추가.
         mAdapter.addItem("2", "Circle", "109957") ;
-        // 세 번째 아이템 추가.
         mAdapter.addItem("3", "Ind", "109957") ;
         mAdapter.addItem("4", "Ind", "109957") ;
         mAdapter.addItem("5", "Ind", "109957") ;
@@ -94,9 +98,8 @@ public class RankFragment extends Fragment {
         mAdapter.addItem("8", "Ind", "109957") ;
         mAdapter.addItem("9", "Ind", "109957") ;
         mAdapter.addItem("10", "Ind", "109957") ;
-        mAdapter.addItem("11", "Ind", "109957") ;
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rank, container, false);
+        return view1;
     }
 }
