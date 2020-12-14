@@ -11,10 +11,9 @@
         android:title="RANK" />
 
     <item
-        android:id="@+id/action_empty"
-        android:title="Hello"
-        android:enabled="false"
-        android:checkable="false"/>
+        android:id="@+id/navigation_user"
+        android:title="USER"
+        android:icon="@drawable/ic_user"/>
 </menu>
 
     <!-- android:icon="@drawable/timer_icon"

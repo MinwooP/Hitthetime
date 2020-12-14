@@ -1,3 +1,4 @@
+
 package com.example.hitthetimetoandrod;
 
 import androidx.annotation.NonNull;
@@ -57,6 +58,8 @@ public class GameActivity extends AppCompatActivity {
             } else if (id == R.id.navigation_rank){
 
                 fragment = new RankFragment();
+            } else {
+                fragment = new UserFragment();
             }
 
             fragmentTransaction.add(R.id.frameLayouts, fragment, tag);
