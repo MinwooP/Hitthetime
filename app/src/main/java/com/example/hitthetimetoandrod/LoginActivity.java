@@ -178,6 +178,7 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebasePost post = new FirebasePost(name, 0);
                                 databaseRef.child("users").child(uid).setValue(post.toMap());
                             }
+
                             SharedPreferences pref = null;
 
                             Intent intent = new Intent(LoginActivity.this, GameActivity.class);
