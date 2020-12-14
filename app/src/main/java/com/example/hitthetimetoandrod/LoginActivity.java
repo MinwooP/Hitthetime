@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
@@ -52,6 +53,8 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int FACEBOOKLOGIN = 1;
+    private static final int GOOGLELOGIN = 2;
 
     private static final String TAG = "LoginActivity";
     private CallbackManager mCallbackManager;
@@ -67,11 +70,27 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private DataSnapshot arrayToken;
 
+    private Context currentCtx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        currentCtx = this;
+
+        String idToken = PreferenceManager.getString(currentCtx, "idToken");
+        int loginType = PreferenceManager.getInt(currentCtx, "loginType");
+
+        if(!idToken.equals("") && loginType != -1){
+
+            Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
+            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+            intent.putExtra("idToken", idToken);
+            intent.putExtra("loginType", loginType);
+            startActivity(intent);
+
+        }
 
         database = FirebaseDatabase.getInstance();
         databaseRef = database.getReference();
@@ -92,6 +111,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("LoginActivity", "Single ValueEventListener Error");
             }
         });
+
+
+
 
 
         /*
@@ -179,9 +201,12 @@ public class LoginActivity extends AppCompatActivity {
                                 databaseRef.child("users").child(uid).setValue(post.toMap());
                             }
 
-                            SharedPreferences pref = null;
+                            PreferenceManager.setString(currentCtx, "idToken", uid);
+                            PreferenceManager.setInt(currentCtx, "loginType", FACEBOOKLOGIN);
 
                             Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+                            intent.putExtra("idToken", uid);
+                            intent.putExtra("loginType", FACEBOOKLOGIN);
                             startActivity(intent);
 
                         } catch (JSONException e) {
@@ -228,9 +253,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent,RESULT_CODE_SINGIN);
     }
-
-
-
 
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
 
@@ -290,10 +312,17 @@ public class LoginActivity extends AppCompatActivity {
                 //Toast.makeText(LoginActivity.this,personName + "  " + personEmail,Toast.LENGTH_LONG).show();
             }
 
+
+            PreferenceManager.setString(currentCtx, "idToken", personUid);
+            PreferenceManager.setInt(currentCtx, "loginType", GOOGLELOGIN);
+
+            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+            intent.putExtra("idToken", personUid);
+            intent.putExtra("loginType", GOOGLELOGIN);
+            startActivity(intent);
+
         }
     }
-
-
 
 
     private void handleFacebookAccessToken(AccessToken token) {
