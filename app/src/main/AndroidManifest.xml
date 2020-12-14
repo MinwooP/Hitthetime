@@ -13,7 +13,9 @@
         android:roundIcon="@drawable/timer_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.HitthetimeToAndrod">
-        <activity android:name=".RankActivity"></activity>
+        <activity android:name=".PopupGameOverActivity"></activity>
+        <activity android:name=".TimeAttackActivity" />
+        <activity android:name=".RankActivity" />
         <activity android:name=".TimeActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".LoginActivity" />
