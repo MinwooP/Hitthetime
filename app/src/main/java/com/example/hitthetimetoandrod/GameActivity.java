@@ -56,7 +56,6 @@ public class GameActivity extends AppCompatActivity {
                 fragment = new GameFragment();
 
             } else if (id == R.id.navigation_rank){
-
                 fragment = new RankFragment();
             } else {
                 fragment = new UserFragment();
