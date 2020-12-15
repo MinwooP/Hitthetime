@@ -15,8 +15,6 @@
         android:theme="@style/Theme.HitthetimeToAndrod">
         <activity android:name=".PopupGameOverActivity"></activity>
         <activity android:name=".TimeAttackActivity" />
-        <activity android:name=".RankActivity" />
-        <activity android:name=".TimeActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

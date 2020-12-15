@@ -3,6 +3,9 @@ package com.example.hitthetimetoandrod;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
@@ -34,8 +37,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +53,8 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int FACEBOOKLOGIN = 1;
+    private static final int GOOGLELOGIN = 2;
 
     private static final String TAG = "LoginActivity";
     private CallbackManager mCallbackManager;
@@ -54,15 +62,59 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth_google;
     private ImageButton googleSignInBtn;
-
     private GoogleSignInClient googleSignInClient;
 
     private int RESULT_CODE_SINGIN=999;
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseRef;
+    private DataSnapshot arrayToken;
+
+    private Context currentCtx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        currentCtx = this;
+
+        String idToken = PreferenceManager.getString(currentCtx, "idToken");
+        int loginType = PreferenceManager.getInt(currentCtx, "loginType");
+
+        if(!idToken.equals("") && loginType != -1){
+
+            Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
+            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+            intent.putExtra("idToken", idToken);
+            intent.putExtra("loginType", loginType);
+            startActivity(intent);
+
+        }
+
+        database = FirebaseDatabase.getInstance();
+        databaseRef = database.getReference();
+
+
+
+        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue());
+                }
+                arrayToken = dataSnapshot;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("LoginActivity", "Single ValueEventListener Error");
+            }
+        });
+
+
+
+
 
         /*
          * google login
@@ -139,21 +191,22 @@ public class LoginActivity extends AppCompatActivity {
                         // Application code
                         Log.i(TAG, "onCompleted: response: " + response.toString());
                         try {
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference databaseRef = database.getReference();
-
-                            String id = object.getString("id");
+                            //check object value, accesstoken
                             String name = object.getString("name");
-                            String birthday = object.getString("birthday");
-
-                            Log.i(TAG, "onCompleted: Id: " + id);
+                            String uid = mFirebaseAuth_facebook.getUid();
                             Log.i(TAG, "onCompleted: Name: " + name);
-                            Log.i(TAG, "onCompleted: Birthday: " + birthday);
 
-                            FirebasePost post = new FirebasePost(id, name, 0, birthday, "facebook");
-                            databaseRef.child("users").child(id).setValue(post.toMap());
+                            if (!isExistUser(uid)) { // 최초 로그인
+                                FirebasePost post = new FirebasePost(name, 0);
+                                databaseRef.child("users").child(uid).setValue(post.toMap());
+                            }
+
+                            PreferenceManager.setString(currentCtx, "idToken", uid);
+                            PreferenceManager.setInt(currentCtx, "loginType", FACEBOOKLOGIN);
 
                             Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+                            intent.putExtra("idToken", uid);
+                            intent.putExtra("loginType", FACEBOOKLOGIN);
                             startActivity(intent);
 
                         } catch (JSONException e) {
@@ -190,6 +243,9 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
     //when the signIn Button is clicked then start the signIn Intent
@@ -197,9 +253,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent,RESULT_CODE_SINGIN);
     }
-
-
-
 
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
 
@@ -248,25 +301,28 @@ public class LoginActivity extends AppCompatActivity {
         //getLastSignedInAccount returned the account
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (account !=null){
-            String personName = account.getDisplayName();
-            String personGivenName = account.getGivenName();
-            String personEmail = account.getEmail();
-            String personId = account.getId();
+
+            String personName = fUser.getDisplayName();
+            String personUid = fUser.getUid();
+
+            if (!isExistUser(personUid)) { // 최초로그인
+                FirebasePost post = new FirebasePost(personName, 0);
+                databaseRef.child("users").child(personUid).setValue(post.toMap());
+                Log.d("LoginActivity", "First Login : " + personUid);
+                //Toast.makeText(LoginActivity.this,personName + "  " + personEmail,Toast.LENGTH_LONG).show();
+            }
 
 
+            PreferenceManager.setString(currentCtx, "idToken", personUid);
+            PreferenceManager.setInt(currentCtx, "loginType", GOOGLELOGIN);
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference databaseRef = database.getReference();
+            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+            intent.putExtra("idToken", personUid);
+            intent.putExtra("loginType", GOOGLELOGIN);
+            startActivity(intent);
 
-            FirebasePost post = new FirebasePost(personId, personName, 0, "", "google");
-            databaseRef.child("users").child(personId).setValue(post.toMap());
-
-
-            Toast.makeText(LoginActivity.this,personName + "  " + personEmail,Toast.LENGTH_LONG).show();
         }
     }
-
-
 
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -305,7 +361,6 @@ public class LoginActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data); // task error
             handleSignInResult(task);
-
         }
         else{
 
@@ -327,6 +382,10 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Log.i(TAG, "onStart: No one logged in :/");
         }
+    }
+
+    public boolean isExistUser(final String token){
+        return arrayToken.hasChild("/users/" + token) ? true : false;
     }
 
 
