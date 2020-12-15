@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -122,33 +123,58 @@ public class UserFragment extends Fragment {
         });
         */
 
-        int loginType = getActivity().getIntent().getIntExtra("loginType", -1);
+        View v = inflater.inflate(R.layout.fragment_user, container, false);
+        ImageButton signOutBt = v.findViewById(R.id.signOutBt);
 
-        switch (loginType){
-            case FACEBOOKLOGIN:
-                LoginManager loginM = LoginManager.getInstance();
-                loginM.logOut();
+        signOutBt.setOnClickListener(new View.OnClickListener(){
 
-                break;
-            case GOOGLELOGIN:
-                // google singout
-                break;
-            default:
-                break;
-        }
-        // remove intent extrea
-        getActivity().getIntent().removeExtra("idToken");
-        getActivity().getIntent().removeExtra("loginType");
+            @Override
+            public void onClick(View v){
 
-        // remove auto login
-        PreferenceManager.clear(getContext());
+                int loginType = getActivity().getIntent().getIntExtra("loginType", -1);
 
-        Intent intent = new Intent(getContext(), LoginActivity.class);
-        startActivity(intent);
+                switch (loginType){
+                    case FACEBOOKLOGIN:
+
+                        // facebook logout
+                        LoginManager loginM = LoginManager.getInstance();
+                        loginM.logOut();
+
+                        break;
+                    case GOOGLELOGIN:
+                        // google logout
+
+                        GoogleSignInOptions gso = new
+                                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .requestIdToken(getString(R.string.default_web_client_id))
+                                .requestEmail()
+                                .build();
+
+                        // Build a GoogleSignInClient with the options specified by gso.
+                        googleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+                        googleSignInClient.signOut();
+                        break;
+                    default:
+
+                        break;
+                }
+                // remove intent extrea
+                getActivity().getIntent().removeExtra("idToken");
+                getActivity().getIntent().removeExtra("loginType");
+
+                // remove auto login
+                PreferenceManager.clear(getContext());
+
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        return v;
     }
 }
