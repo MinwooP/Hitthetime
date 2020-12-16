@@ -37,6 +37,8 @@ public class UserFragment extends Fragment {
     private static final int FACEBOOKLOGIN = 1;
     private static final int GOOGLELOGIN = 2;
 
+    private static final int ISLOGOUT = 4;
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -131,19 +133,27 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View v){
 
-                int loginType = getActivity().getIntent().getIntExtra("loginType", -1);
+
+                Intent _intent = getActivity().getIntent();
+
+                int loginType = _intent.getIntExtra("loginType", -1);
+
+                int flag = 0;
 
                 switch (loginType){
                     case FACEBOOKLOGIN:
 
                         // facebook logout
-                        LoginManager loginM = LoginManager.getInstance();
-                        loginM.logOut();
+
+                        //LoginManager loginM = LoginManager.getInstance();
+                        //loginM.logOut();
+
+                        flag = ISLOGOUT | FACEBOOKLOGIN;
 
                         break;
                     case GOOGLELOGIN:
                         // google logout
-
+/*
                         GoogleSignInOptions gso = new
                                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -153,19 +163,25 @@ public class UserFragment extends Fragment {
                         // Build a GoogleSignInClient with the options specified by gso.
                         googleSignInClient = GoogleSignIn.getClient(getContext(), gso);
                         googleSignInClient.signOut();
+                        */
+                        flag = ISLOGOUT | GOOGLELOGIN;
+
                         break;
                     default:
-
                         break;
                 }
-                // remove intent extrea
+                /*
+                // remove intent extra
                 getActivity().getIntent().removeExtra("idToken");
                 getActivity().getIntent().removeExtra("loginType");
-
+*/
                 // remove auto login
                 PreferenceManager.clear(getContext());
 
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.putExtra("isLogOut", flag);
+
+
                 startActivity(intent);
             }
         });
