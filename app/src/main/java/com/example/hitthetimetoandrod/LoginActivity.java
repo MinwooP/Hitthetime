@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
@@ -47,8 +46,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -121,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
          */
 
         //Initialization
-        googleSignInBtn = findViewById(R.id.googleSignInBtn);
+        googleSignInBtn = findViewById(R.id.btn_logout);
 
         //signout button
         //googleSignOutBtn = findViewById(R.id.googleSignOutBtn);

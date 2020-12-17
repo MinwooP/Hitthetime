@@ -1,20 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UserFragment">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#FFFFFF"
+tools:context=".UserFragment">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/best_record_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:src="@drawable/ic_best_record"
+        app:layout_constraintBottom_toTopOf="@+id/record_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_weight="0.8"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/record_textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/record_color"
+        app:layout_constraintBottom_toTopOf="@+id/contact_us_view"
+        app:layout_constraintEnd_toEndOf="@+id/best_record_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/best_record_view"
+        app:layout_constraintTop_toBottomOf="@+id/best_record_view"
+        app:layout_constraintVertical_weight="0.4"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:id="@+id/contact_us_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_contact_us"
+        app:layout_constraintBottom_toTopOf="@+id/url_view"
+        app:layout_constraintEnd_toEndOf="@+id/record_textView"
+        app:layout_constraintStart_toStartOf="@+id/record_textView"
+        app:layout_constraintTop_toBottomOf="@+id/record_textView"
+        app:layout_constraintVertical_weight="0.6" />
+
+    <ImageView
+        android:id="@+id/url_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_github_url"
+        app:layout_constraintBottom_toTopOf="@+id/support_us_view"
+        app:layout_constraintEnd_toEndOf="@+id/contact_us_view"
+        app:layout_constraintStart_toStartOf="@+id/contact_us_view"
+        app:layout_constraintTop_toBottomOf="@+id/contact_us_view"
+        app:layout_constraintVertical_weight="1" />
+
+    <ImageView
+        android:id="@+id/support_us_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_support_us"
+        app:layout_constraintBottom_toTopOf="@+id/thaks_view"
+        app:layout_constraintEnd_toEndOf="@+id/contact_us_view"
+        app:layout_constraintStart_toStartOf="@+id/contact_us_view"
+        app:layout_constraintTop_toBottomOf="@+id/url_view"
+        app:layout_constraintVertical_weight="1"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:id="@+id/thaks_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_thank_you_2"
+        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
+        app:layout_constraintEnd_toEndOf="@+id/support_us_view"
+        app:layout_constraintStart_toStartOf="@+id/support_us_view"
+        app:layout_constraintTop_toBottomOf="@+id/support_us_view"
+        app:layout_constraintVertical_weight="0.8"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:id="@+id/btn_logout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/thaks_view"
+        app:layout_constraintStart_toStartOf="@+id/thaks_view"
+        app:layout_constraintTop_toBottomOf="@+id/thaks_view"
+        app:layout_constraintVertical_weight="0.4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
