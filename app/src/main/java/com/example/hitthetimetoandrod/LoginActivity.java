@@ -76,18 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
         currentCtx = this;
 
-        String idToken = PreferenceManager.getString(currentCtx, "idToken");
-        int loginType = PreferenceManager.getInt(currentCtx, "loginType");
 
-        if(!idToken.equals("") && loginType != -1){
-
-            Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
-            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
-            intent.putExtra("idToken", idToken);
-            intent.putExtra("loginType", loginType);
-            startActivity(intent);
-
-        }
 
         database = FirebaseDatabase.getInstance();
         databaseRef = database.getReference();
@@ -101,6 +90,21 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue());
                 }
                 arrayToken = dataSnapshot;
+
+                String idToken = PreferenceManager.getString(currentCtx, "idToken");
+                int loginType = PreferenceManager.getInt(currentCtx, "loginType");
+
+                if(!idToken.equals("") && loginType != -1){
+                    if(isExistUser(idToken)) {
+
+                        Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
+                        Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+                        intent.putExtra("idToken", idToken);
+                        intent.putExtra("loginType", loginType);
+                        startActivity(intent);
+                    }
+                }
+
             }
 
             @Override
@@ -118,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
          */
 
         //Initialization
-        googleSignInBtn = findViewById(R.id.btn_logout);
+        googleSignInBtn = findViewById(R.id.signOutBt);
 
         //signout button
         //googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
@@ -240,8 +244,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 
