@@ -411,6 +411,7 @@ public class LoginActivity extends AppCompatActivity {
             } else if((f_LogOut & GOOGLELOGIN) == GOOGLELOGIN){
                 googleSignInClient.signOut();
             }
+
         }
     }
 
