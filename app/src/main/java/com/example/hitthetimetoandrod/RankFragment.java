@@ -11,6 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 /**
@@ -25,6 +31,10 @@ public class RankFragment extends Fragment {
     RecyclerTextAdapter mAdapter = null;
     ArrayList<RecyclerItem> mList = new ArrayList<RecyclerItem>();
 
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseRef;
+    //private ArrayList<double> arraySocre;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,6 +98,25 @@ public class RankFragment extends Fragment {
         // 리사이클러뷰에 LinearLayoutManager 지정. (vertical)
         /* Activity에서 fragment로 코드 이동할 때, this -> getActivity로 바꿔주었음 */
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        database = FirebaseDatabase.getInstance();
+        databaseRef = database.getReference("/users/");
+
+        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue());
+                }
+                //Rank update
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("LoginActivity", "Single ValueEventListener Error");
+            }
+        });
+
 
 
         // DB와 연결해서 기록들 비교한다음에 TOP 10 가져온뒤 여기서 정렬 후 아이템 추가

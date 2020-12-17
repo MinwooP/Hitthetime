@@ -89,6 +89,15 @@
         app:layout_constraintVertical_weight="1.5"
         app:srcCompat="@drawable/ic_hitthetime_downpart" />
 
+    <Button
+        android:id="@+id/blind"
+        android:layout_width="442dp"
+        android:layout_height="774dp"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--    android:background="#FFFFFF"-->

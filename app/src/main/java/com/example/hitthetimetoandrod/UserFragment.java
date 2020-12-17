@@ -36,6 +36,7 @@ public class UserFragment extends Fragment {
     private static final String TAG = "UserFragment";
     private static final int FACEBOOKLOGIN = 1;
     private static final int GOOGLELOGIN = 2;
+    private static final int ISLOGOUT = 4;
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -83,89 +84,46 @@ public class UserFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-
-        String idToken = getActivity().getIntent().getStringExtra("idToken");
-        int loginType = getActivity().getIntent().getIntExtra("loginType", -1);
-        Log.d(TAG, "onCreate:  idToken : " + idToken + " loginType : " +  (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /*
-    // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new
-                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        googleSignInClient = GoogleSignIn.getClient(LoginActivity, gso);
-
-        Button signOut = getView().findViewById(R.id.signOutBt);
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                LoginManager.getInstance().logOut();
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                intent.removeExtra("idToken");
-                intent.removeExtra("loginType");
-
-                PreferenceManager.clear(getContext());
-                startActivity(intent);
-
-            }
-        });
-        */
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         ImageButton signOutBt = v.findViewById(R.id.signOutBt);
 
         signOutBt.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v){
 
                 int loginType = getActivity().getIntent().getIntExtra("loginType", -1);
 
+                int flag = 0;
+
                 switch (loginType){
                     case FACEBOOKLOGIN:
 
-                        // facebook logout
-                        LoginManager loginM = LoginManager.getInstance();
-                        loginM.logOut();
+                        flag = ISLOGOUT | FACEBOOKLOGIN;
 
                         break;
                     case GOOGLELOGIN:
+
                         // google logout
 
-                        GoogleSignInOptions gso = new
-                                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                                .requestIdToken(getString(R.string.default_web_client_id))
-                                .requestEmail()
-                                .build();
+                        flag = ISLOGOUT | GOOGLELOGIN;
 
-                        // Build a GoogleSignInClient with the options specified by gso.
-                        googleSignInClient = GoogleSignIn.getClient(getContext(), gso);
-                        googleSignInClient.signOut();
                         break;
                     default:
-
                         break;
                 }
-                // remove intent extrea
-                getActivity().getIntent().removeExtra("idToken");
-                getActivity().getIntent().removeExtra("loginType");
 
-                // remove auto login
+                // remove auto login shared preference
                 PreferenceManager.clear(getContext());
 
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.putExtra("isLogOut", flag);
+
                 startActivity(intent);
             }
         });
