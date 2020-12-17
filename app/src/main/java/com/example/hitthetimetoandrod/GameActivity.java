@@ -58,10 +58,6 @@ public class GameActivity extends AppCompatActivity {
             } else if (id == R.id.navigation_rank){
                 fragment = new RankFragment();
             } else {
-                String idToken = getIntent().getStringExtra("idToken");
-                int loginType = getIntent().getIntExtra("loginType", -1);
-
-
                 fragment = new UserFragment();
             }
 
