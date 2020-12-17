@@ -132,8 +132,10 @@ public class TimeAttackActivity extends AppCompatActivity {
                             Log.e("COUNT_GAME STATE", "COUNT GAME 5" + score);
                             text_Score5.setText(score + "");
                             handler.removeCallbacks(runnable);
+                            String idToken = getIntent().getStringExtra("idToken");
                             Intent intent = new Intent(TimeAttackActivity.this, PopupGameOverActivity.class);
                             intent.putExtra("Result", RESULT);
+                            intent.putExtra("idToken", idToken);
                             finish();
                             startActivity(intent);
                         }

@@ -79,11 +79,15 @@ public class GameFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_game, container, false);
+
+        String idToken = getActivity().getIntent().getStringExtra("idToken");
+
         btn_gameStart = (Button)v.findViewById(R.id.startButton);
         btn_gameStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), TimeAttackActivity.class);
+                intent.putExtra("idToken", idToken);
                 startActivity(intent);
             }
         });

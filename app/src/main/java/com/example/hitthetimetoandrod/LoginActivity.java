@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -50,6 +51,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static android.os.SystemClock.sleep;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -74,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Context currentCtx;
 
+    private Button blind;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +87,9 @@ public class LoginActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         databaseRef = database.getReference();
+
+
+        blind = findViewById(R.id.blind);
 
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -99,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("LoginActivity", "Single ValueEventListener Error");
             }
         });
+
 
         /*
          * google login
@@ -122,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
 
         // Build a GoogleSignInClient with the options specified by gso.
         googleSignInClient = GoogleSignIn.getClient(this,gso);
@@ -182,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.i(TAG, "onCompleted: Name: " + name);
 
                             if (!isExistUser(uid)) { // 최초 로그인
-                                FirebasePost post = new FirebasePost(name, 0);
+                                FirebasePost post = new FirebasePost(name, Double.MAX_VALUE);
                                 databaseRef.child("users").child(uid).setValue(post.toMap());
                             }
 
@@ -253,7 +262,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             Toast.makeText(LoginActivity.this,"SignIn Failed!!!",Toast.LENGTH_LONG).show();
-            FirebaseGoogleAuth(null);
+            //FirebaseGoogleAuth(null);
         }
     }
 
@@ -289,7 +298,7 @@ public class LoginActivity extends AppCompatActivity {
             String personUid = fUser.getUid();
 
             if (!isExistUser(personUid)) { // 최초로그인
-                FirebasePost post = new FirebasePost(personName, 0);
+                FirebasePost post = new FirebasePost(personName, Double.MAX_VALUE);
                 databaseRef.child("users").child(personUid).setValue(post.toMap());
                 Log.d("LoginActivity", "First Login : " + personUid);
                 //Toast.makeText(LoginActivity.this,personName + "  " + personEmail,Toast.LENGTH_LONG).show();
@@ -339,7 +348,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-
         if (requestCode == RESULT_CODE_SINGIN) {        //just to verify the code
             //create a Task object and use GoogleSignInAccount from Intent and write a separate method to handle singIn Result.
             super.onActivityResult(requestCode, resultCode, data);
@@ -366,6 +374,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Log.i(TAG, "onStart: No one logged in :/");
         }
+
     }
 
     public boolean isExistUser(final String token){
@@ -377,15 +386,17 @@ public class LoginActivity extends AppCompatActivity {
         String idToken = PreferenceManager.getString(currentCtx, "idToken");
         int loginType = PreferenceManager.getInt(currentCtx, "loginType");
 
-        if(!idToken.equals("") && loginType != -1){
-            if(isExistUser(idToken)) {
+        if(!idToken.equals("") && loginType != -1 && isExistUser(idToken)){
 
-                Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
-                Intent intent = new Intent(LoginActivity.this, GameActivity.class);
-                intent.putExtra("idToken", idToken);
-                intent.putExtra("loginType", loginType);
-                startActivity(intent);
-            }
+
+            Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
+            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+            intent.putExtra("idToken", idToken);
+            intent.putExtra("loginType", loginType);
+            startActivity(intent);
+        }
+        else{
+            blind.setVisibility(View.INVISIBLE);
         }
 
 

@@ -11,15 +11,15 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class FirebasePost {
     public String name;
-    public int record;
+    public double bestRecord;
 
     public FirebasePost(){
         // Default constructor required for calls to DataSnapshot.getValue(FirebasePost.class)
     }
 
-    public FirebasePost(String name, int record){
+    public FirebasePost(String name, double bestRecord){
         this.name = name;
-        this.record = record;
+        this.bestRecord = bestRecord;
     }
 
     @Exclude
@@ -27,7 +27,7 @@ public class FirebasePost {
         HashMap<String, Object> result = new HashMap<>();
 
         result.put("name", name);
-        result.put("record", record);
+        result.put("bestRecord", bestRecord);
         return result;
     }
 }
