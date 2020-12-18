@@ -1,30 +1,14 @@
 package com.example.hitthetimetoandrod;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.SystemClock;
-import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.airbnb.lottie.Lottie;
-import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieDrawable;
-
-import org.w3c.dom.Text;
+import android.widget.ImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +21,7 @@ public class GameFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private Button btn_gameStart;
+    private ImageButton btn_gameStart;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -82,7 +66,7 @@ public class GameFragment extends Fragment {
 
         String idToken = getActivity().getIntent().getStringExtra("idToken");
 
-        btn_gameStart = (Button)v.findViewById(R.id.startButton);
+        btn_gameStart = (ImageButton)v.findViewById(R.id.startBtn);
         btn_gameStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
