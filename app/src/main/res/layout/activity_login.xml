@@ -54,7 +54,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/signOutBt"
+        app:layout_constraintBottom_toTopOf="@+id/googleBtn"
         app:layout_constraintEnd_toEndOf="@+id/facebookBtn"
         app:layout_constraintStart_toStartOf="@+id/facebookBtn"
         app:layout_constraintTop_toBottomOf="@+id/facebookBtn"
@@ -62,7 +62,7 @@
         app:srcCompat="@drawable/ic_or" />
 
     <ImageButton
-        android:id="@+id/signOutBt"
+        android:id="@+id/googleBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -83,9 +83,9 @@
         android:layout_height="0dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/signOutBt"
-        app:layout_constraintStart_toStartOf="@+id/signOutBt"
-        app:layout_constraintTop_toBottomOf="@+id/signOutBt"
+        app:layout_constraintEnd_toEndOf="@+id/googleBtn"
+        app:layout_constraintStart_toStartOf="@+id/googleBtn"
+        app:layout_constraintTop_toBottomOf="@+id/googleBtn"
         app:layout_constraintVertical_weight="1.5"
         app:srcCompat="@drawable/ic_hitthetime_downpart" />
 

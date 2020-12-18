@@ -48,8 +48,6 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
-import static android.os.SystemClock.sleep;
-
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -110,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
          */
 
         //Initialization
-        googleSignInBtn = findViewById(R.id.signOutBt);
+        googleSignInBtn = findViewById(R.id.googleBtn);
 
         //signout button
         //googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
