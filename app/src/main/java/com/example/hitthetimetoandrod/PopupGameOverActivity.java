@@ -73,7 +73,7 @@ public class PopupGameOverActivity extends Activity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Object b = dataSnapshot.child("bestRecord").getValue();
-                double bestRecord =Double.parseDouble(b.toString());
+                double bestRecord = Double.parseDouble(b.toString());
                 if(bestRecord > result){
                     databaseRef.child("bestRecord").setValue(result);
                 }
