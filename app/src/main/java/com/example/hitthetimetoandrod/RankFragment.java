@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,6 +83,10 @@ public class RankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Bundle bundle = getArguments();
+        List<FirebasePost> arrayList = bundle.getParcelableArrayList("arrayList");
+
+
         View view1 = inflater.inflate(R.layout.fragment_rank, container, false);
         /* activity에서 fragment로 넘어오면서 mRecyclerView = findViewById(R.id.recycler1);
          * 아래 문장으로 바꾸어줌 */
@@ -98,40 +103,16 @@ public class RankFragment extends Fragment {
         // 리사이클러뷰에 LinearLayoutManager 지정. (vertical)
         /* Activity에서 fragment로 코드 이동할 때, this -> getActivity로 바꿔주었음 */
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        database = FirebaseDatabase.getInstance();
-        databaseRef = database.getReference("/users/");
-
-        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue());
-                }
-                //Rank update
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("LoginActivity", "Single ValueEventListener Error");
-            }
-        });
-
-
-
         // DB와 연결해서 기록들 비교한다음에 TOP 10 가져온뒤 여기서 정렬 후 아이템 추가
         // 아이템 추가.
-        mAdapter.addItem("1", "Box", "109957");
-        mAdapter.addItem("2", "Circle", "109957");
-        mAdapter.addItem("3", "Ind", "109957");
-        mAdapter.addItem("4", "Ind", "109957");
-        mAdapter.addItem("5", "Ind", "109957");
-        mAdapter.addItem("6", "Ind", "109957");
-        mAdapter.addItem("7", "Ind", "109957");
-        mAdapter.addItem("8", "Ind", "109957");
-        mAdapter.addItem("9", "Ind", "109957");
-        mAdapter.addItem("10", "Ind", "109957");
-
+        int count = 1;
+        for(FirebasePost FP : arrayList) {
+            if(count > 10){
+                break;
+            }
+            mAdapter.addItem(String.valueOf(count), FP.getName(), Double.toString(FP.getRecord()));
+            count++;
+        }
         // Inflate the layout for this fragment
         return view1;
     }

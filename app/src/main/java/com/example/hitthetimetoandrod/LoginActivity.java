@@ -385,8 +385,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if(!idToken.equals("") && loginType != -1 && isExistUser(idToken)){
 
-
             Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
+
             Intent intent = new Intent(LoginActivity.this, GameActivity.class);
             intent.putExtra("idToken", idToken);
             intent.putExtra("loginType", loginType);
