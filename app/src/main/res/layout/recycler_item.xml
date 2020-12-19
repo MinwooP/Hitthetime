@@ -4,45 +4,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="8dp">
 
     <TextView
         android:id="@+id/rank"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/htt_right"
         android:textSize="20dp"
+        app:autoSizeMaxTextSize="20dp"
+        app:autoSizeMinTextSize="5dp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toStartOf="@+id/name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="1"/>
 
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
         android:gravity="center|center_vertical"
         android:text="TextView"
-        android:textSize="20dp"
         android:textColor="@color/htt_right"
+        android:textSize="20dp"
+        app:autoSizeMaxTextSize="20dp"
+        app:autoSizeMinTextSize="5dp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/record"
         app:layout_constraintStart_toEndOf="@+id/rank"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="3"/>
 
     <TextView
         android:id="@+id/record"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="20dp"
         android:textColor="@color/htt_right"
+        android:textSize="20dp"
+        app:autoSizeMaxTextSize="20dp"
+        app:autoSizeMinTextSize="5dp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/name"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
