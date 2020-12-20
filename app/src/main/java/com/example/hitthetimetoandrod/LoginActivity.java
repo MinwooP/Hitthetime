@@ -197,6 +197,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("idToken", uid);
                             intent.putExtra("loginType", FACEBOOKLOGIN);
                             startActivity(intent);
+                            finish();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -308,7 +309,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("loginType", GOOGLELOGIN); //error
 
             startActivity(intent);
-
+            finish();
         }
     }
 
@@ -389,6 +390,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("idToken", idToken);
             intent.putExtra("loginType", loginType);
             startActivity(intent);
+            finish();
         }
         else{
             blind.setVisibility(View.INVISIBLE);

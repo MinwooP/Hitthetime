@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference databaseRef;
-    private DataSnapshot arrayData;
+    private double userRecord;
 
     private List<FirebasePost> arrayList;
 
@@ -65,15 +66,17 @@ public class GameActivity extends AppCompatActivity {
                     Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue()); //{bestRecord=64, name=박민우}'
                 }
 
-                 Collections.sort(arrayList, new Comparator<FirebasePost>() {
+                userRecord = Double.parseDouble(dataSnapshot.child(getIntent().getStringExtra("idToken")).child("bestRecord").getValue().toString());
+
+                Collections.sort(arrayList, new Comparator<FirebasePost>() {
 
                     Collator collator = Collator.getInstance();
 
                     @Override
                     public int compare(FirebasePost fp1, FirebasePost fp2) {
-                        if (fp1.getRecord() < fp2.getRecord()){
+                        if (fp1.getRecord() < fp2.getRecord()) {
                             return -1;
-                        } else if (fp1.getRecord() > fp2.getRecord()){
+                        } else if (fp1.getRecord() > fp2.getRecord()) {
                             return 1;
                         } else {
                             return 0;
@@ -127,6 +130,10 @@ public class GameActivity extends AppCompatActivity {
                 fragment.setArguments(bundle);
             } else {
                 fragment = new UserFragment();
+                Bundle bundle = new Bundle();
+                bundle.putDouble("userRecord", userRecord);
+
+                fragment.setArguments(bundle);
             }
             fragmentTransaction.add(R.id.frameLayouts, fragment, tag);
         } else {
@@ -137,5 +144,38 @@ public class GameActivity extends AppCompatActivity {
         fragmentTransaction.setReorderingAllowed(true);
         fragmentTransaction.commitNow();
 
+    }
+
+    // 마지막으로 뒤로 가기 버튼을 눌렀던 시간 저장
+    private long backKeyPressedTime = 0;
+    // 첫 번째 뒤로 가기 버튼을 누를 때 표시
+    private Toast toast;
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        // 기존 뒤로 가기 버튼의 기능을 막기 위해 주석 처리 또는 삭제
+
+        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간에 2.5초를 더해 현재 시간과 비교 후
+        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간이 2.5초가 지났으면 Toast 출력
+        // 2500 milliseconds = 2.5 seconds
+        if (System.currentTimeMillis() > backKeyPressedTime + 2500) {
+            backKeyPressedTime = System.currentTimeMillis();
+            toast = Toast.makeText(this, "뒤로 가기 버튼을 한 번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간에 2.5초를 더해 현재 시간과 비교 후
+        // 마지막으로 뒤로 가기 버튼을 눌렀던 시간이 2.5초가 지나지 않았으면 종료
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2500) {
+            finish();
+            toast.cancel();
+            toast = Toast.makeText(this,"이용해 주셔서 감사합니다.",Toast.LENGTH_LONG);
+            toast.show();
+            /*
+            System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid());
+             */
+        }
     }
 }
