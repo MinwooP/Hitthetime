@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp">
+    android:layout_marginTop="20dp">
 
     <TextView
         android:id="@+id/rank"
@@ -16,7 +16,7 @@
         android:textColor="@color/htt_right"
         android:textSize="20dp"
         app:autoSizeMaxTextSize="20dp"
-        app:autoSizeMinTextSize="5dp"
+        app:autoSizeMinTextSize="10dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toStartOf="@+id/rankIcon"
         app:layout_constraintHorizontal_weight="1"
@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/rank"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/timer_icon"/>
+        app:srcCompat="@drawable/ic_gold_medal"/>
 
     <TextView
         android:id="@+id/name"
@@ -43,7 +43,7 @@
         android:textColor="@color/htt_right"
         android:textSize="20dp"
         app:autoSizeMaxTextSize="20dp"
-        app:autoSizeMinTextSize="5dp"
+        app:autoSizeMinTextSize="10dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/record"
@@ -60,7 +60,7 @@
         android:textColor="@color/htt_right"
         android:textSize="20dp"
         app:autoSizeMaxTextSize="20dp"
-        app:autoSizeMinTextSize="5dp"
+        app:autoSizeMinTextSize="10dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

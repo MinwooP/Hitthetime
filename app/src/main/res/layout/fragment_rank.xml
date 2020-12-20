@@ -12,13 +12,16 @@
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:src="@drawable/ic_top_10"
         app:layout_constraintBottom_toTopOf="@+id/layout_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,8 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_weight="10">
+        app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler1"
@@ -40,11 +42,12 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="70dp"
-            android:background="#FFFFFF" />
+            android:layout_marginBottom="30dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!-- top10 리사이클러뷰 아래에 뭔가 하나 더 있으면 좋을 듯 -->
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
