@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +41,8 @@ public class PopupGameOverActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_popup_game_over);
         TextView text_Result = (TextView)findViewById(R.id.text_end_result);
-        Button btn_home = (Button) findViewById(R.id.image_home);
-        Button btn_restart = (Button)findViewById(R.id.image_restart);
+        ImageButton btn_home = (ImageButton) findViewById(R.id.image_home);
+        ImageButton btn_restart = (ImageButton) findViewById(R.id.image_restart);
         Intent intent = getIntent();
         String idToken = intent.getStringExtra("idToken");
         Double result = intent.getDoubleExtra("Result", 0);
