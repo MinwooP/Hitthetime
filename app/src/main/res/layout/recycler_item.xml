@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/rank"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/htt_right"
@@ -18,10 +18,21 @@
         app:autoSizeMaxTextSize="20dp"
         app:autoSizeMinTextSize="5dp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintEnd_toStartOf="@+id/rankIcon"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/rankIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/rank"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="1"/>
+        app:srcCompat="@drawable/timer_icon"/>
 
     <TextView
         android:id="@+id/name"
@@ -36,9 +47,9 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/record"
-        app:layout_constraintStart_toEndOf="@+id/rank"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="3"/>
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@+id/rankIcon"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/record"
@@ -53,8 +64,8 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toEndOf="@+id/name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="3"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
