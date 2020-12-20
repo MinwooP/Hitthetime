@@ -107,9 +107,10 @@ public class RankFragment extends Fragment {
         // 아이템 추가.
         int count = 1;
         for(FirebasePost FP : arrayList) {
-            if(count > 10){
+            if(count > 10 || FP.getRecord() == Double.MAX_VALUE){
                 break;
             }
+
             mAdapter.addItem(String.valueOf(count), FP.getName(), Double.toString(FP.getRecord()));
             count++;
         }
