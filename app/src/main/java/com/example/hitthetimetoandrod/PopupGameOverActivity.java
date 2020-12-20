@@ -26,6 +26,7 @@ public class PopupGameOverActivity extends Activity {
         Button btn_restart = (Button)findViewById(R.id.image_restart);
         Intent intent = getIntent();
         Double result = intent.getDoubleExtra("Result", 0);
+
         text_Result.setText(result.toString());
         text_Result.bringToFront();
         btn_home.setOnClickListener(new View.OnClickListener(){
