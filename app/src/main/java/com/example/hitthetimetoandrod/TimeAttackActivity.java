@@ -9,6 +9,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -21,7 +22,7 @@ import java.util.StringTokenizer;
 public class TimeAttackActivity extends AppCompatActivity {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private Button btn_Start, btn_Stop, btn_Reset;
+    private ImageButton btn_Start, btn_Stop, btn_Reset;
     private LottieAnimationView animationView;
     private TextView text_Goal, text_Now, text_Score1, text_Score2, text_Score3, text_Score4, text_Score5;
     private long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L;
@@ -46,8 +47,8 @@ public class TimeAttackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_attack);
         handler = new Handler();
-        btn_Start = (Button) findViewById(R.id.btn_start);
-        btn_Stop = (Button) findViewById(R.id.btn_stop);
+        btn_Start = (ImageButton) findViewById(R.id.btn_start);
+        btn_Stop = (ImageButton) findViewById(R.id.btn_stop);
 
         text_Now = (TextView) findViewById(R.id.text_nowTime);
         text_Goal = (TextView) findViewById(R.id.text_goalTime);
@@ -132,8 +133,10 @@ public class TimeAttackActivity extends AppCompatActivity {
                             Log.e("COUNT_GAME STATE", "COUNT GAME 5" + score);
                             text_Score5.setText(score + "");
                             handler.removeCallbacks(runnable);
+                            String idToken = getIntent().getStringExtra("idToken");
                             Intent intent = new Intent(TimeAttackActivity.this, PopupGameOverActivity.class);
                             intent.putExtra("Result", RESULT);
+                            intent.putExtra("idToken", idToken);
                             finish();
                             startActivity(intent);
                         }

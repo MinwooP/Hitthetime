@@ -1,5 +1,6 @@
 package com.example.hitthetimetoandrod;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,9 +20,18 @@ import android.view.ViewGroup;
 public class UserFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
+
+    private static final String TAG = "UserFragment";
+    private static final int FACEBOOKLOGIN = 1;
+    private static final int GOOGLELOGIN = 2;
+    private static final int ISLOGOUT = 4;
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
+    private GoogleSignInClient googleSignInClient;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -53,12 +66,61 @@ public class UserFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.fragment_user, container, false);
+        ImageButton signOutBt = v.findViewById(R.id.signOutBt);
+
+        signOutBt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                int loginType = getActivity().getIntent().getIntExtra("loginType", -1);
+
+                int flag = 0;
+
+                switch (loginType){
+                    case FACEBOOKLOGIN:
+
+                        flag = ISLOGOUT | FACEBOOKLOGIN;
+
+                        break;
+                    case GOOGLELOGIN:
+
+                        // google logout
+
+                        flag = ISLOGOUT | GOOGLELOGIN;
+
+                        break;
+                    default:
+                        break;
+                }
+
+                // remove auto login shared preference
+                PreferenceManager.clear(getContext());
+
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.putExtra("isLogOut", flag);
+
+                startActivity(intent);
+            }
+        });
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+
+        return v;
     }
 }

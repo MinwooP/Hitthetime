@@ -5,11 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -47,14 +47,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final int FACEBOOKLOGIN = 1;
     private static final int GOOGLELOGIN = 2;
+    private static final int ISLOGOUT = 4;
+
 
     private static final String TAG = "LoginActivity";
     private CallbackManager mCallbackManager;
@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Context currentCtx;
 
+    private Button blind;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,23 +80,11 @@ public class LoginActivity extends AppCompatActivity {
 
         currentCtx = this;
 
-        String idToken = PreferenceManager.getString(currentCtx, "idToken");
-        int loginType = PreferenceManager.getInt(currentCtx, "loginType");
-
-        if(!idToken.equals("") && loginType != -1){
-
-            Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
-            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
-            intent.putExtra("idToken", idToken);
-            intent.putExtra("loginType", loginType);
-            startActivity(intent);
-
-        }
-
         database = FirebaseDatabase.getInstance();
         databaseRef = database.getReference();
 
 
+        blind = findViewById(R.id.blind);
 
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -104,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue());
                 }
                 arrayToken = dataSnapshot;
+                autoLogin();
             }
 
             @Override
@@ -113,15 +103,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
-
         /*
          * google login
          */
 
         //Initialization
-        googleSignInBtn = findViewById(R.id.googleSignInBtn);
+        googleSignInBtn = findViewById(R.id.googleBtn);
 
         //signout button
         //googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
@@ -139,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
+
         // Build a GoogleSignInClient with the options specified by gso.
         googleSignInClient = GoogleSignIn.getClient(this,gso);
 
@@ -149,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                 signInM();
             }
         });
+
 
 
         /* google signout code
@@ -197,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.i(TAG, "onCompleted: Name: " + name);
 
                             if (!isExistUser(uid)) { // 최초 로그인
-                                FirebasePost post = new FirebasePost(name, 0);
+                                FirebasePost post = new FirebasePost(name, Double.MAX_VALUE);
                                 databaseRef.child("users").child(uid).setValue(post.toMap());
                             }
 
@@ -244,7 +233,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        LogOut();
 
     }
 
@@ -268,7 +257,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             Toast.makeText(LoginActivity.this,"SignIn Failed!!!",Toast.LENGTH_LONG).show();
-            FirebaseGoogleAuth(null);
+            //FirebaseGoogleAuth(null);
         }
     }
 
@@ -283,8 +272,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"successful",Toast.LENGTH_LONG).show();
                     FirebaseUser firebaseUser = mFirebaseAuth_google.getCurrentUser();
                     UpdateUI(firebaseUser);
-                    Intent intent = new Intent(LoginActivity.this, GameActivity.class);
-                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(LoginActivity.this,"Failed!",Toast.LENGTH_LONG).show();
@@ -306,7 +293,7 @@ public class LoginActivity extends AppCompatActivity {
             String personUid = fUser.getUid();
 
             if (!isExistUser(personUid)) { // 최초로그인
-                FirebasePost post = new FirebasePost(personName, 0);
+                FirebasePost post = new FirebasePost(personName, Double.MAX_VALUE);
                 databaseRef.child("users").child(personUid).setValue(post.toMap());
                 Log.d("LoginActivity", "First Login : " + personUid);
                 //Toast.makeText(LoginActivity.this,personName + "  " + personEmail,Toast.LENGTH_LONG).show();
@@ -318,7 +305,8 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(LoginActivity.this, GameActivity.class);
             intent.putExtra("idToken", personUid);
-            intent.putExtra("loginType", GOOGLELOGIN);
+            intent.putExtra("loginType", GOOGLELOGIN); //error
+
             startActivity(intent);
 
         }
@@ -355,7 +343,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-
         if (requestCode == RESULT_CODE_SINGIN) {        //just to verify the code
             //create a Task object and use GoogleSignInAccount from Intent and write a separate method to handle singIn Result.
             super.onActivityResult(requestCode, resultCode, data);
@@ -382,10 +369,48 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Log.i(TAG, "onStart: No one logged in :/");
         }
+
     }
 
     public boolean isExistUser(final String token){
-        return arrayToken.hasChild("/users/" + token) ? true : false;
+        return arrayToken.hasChild("/users/" + token);
+    }
+
+    public void autoLogin(){
+
+        String idToken = PreferenceManager.getString(currentCtx, "idToken");
+        int loginType = PreferenceManager.getInt(currentCtx, "loginType");
+
+        if(!idToken.equals("") && loginType != -1 && isExistUser(idToken)){
+
+            Log.i(TAG, "PreferenceManager | idToken : " + idToken + "loginType : " + (loginType == 1 ? "FACEBOOKLOGIN" : "GOOGLELOGIN"));
+
+            Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+            intent.putExtra("idToken", idToken);
+            intent.putExtra("loginType", loginType);
+            startActivity(intent);
+        }
+        else{
+            blind.setVisibility(View.INVISIBLE);
+        }
+
+
+    }
+
+
+    public void LogOut(){
+
+        int f_LogOut = getIntent().getIntExtra("isLogOut", 0);
+
+        if((f_LogOut & ISLOGOUT) == ISLOGOUT){
+
+            if((f_LogOut & FACEBOOKLOGIN) == FACEBOOKLOGIN){
+                LoginManager.getInstance().logOut();
+            } else if((f_LogOut & GOOGLELOGIN) == GOOGLELOGIN){
+                googleSignInClient.signOut();
+            }
+
+        }
     }
 
 

@@ -39,7 +39,6 @@ public class RecyclerTextAdapter extends RecyclerView.Adapter<RecyclerTextAdapte
         RecyclerItem item = mData.get(position) ;
 
         holder.rank.setText(item.getRank());
-        // holder.rank.setText(item.getRank()) ;
         holder.name.setText(item.getName()) ;
         holder.record.setText(item.getRecord());
     }
@@ -50,7 +49,7 @@ public class RecyclerTextAdapter extends RecyclerView.Adapter<RecyclerTextAdapte
         return mData.size() ;
     }
 
-    public void addItem(String rank, String name, String  record){
+    public void addItem(String rank, String name, String record){
         RecyclerItem item = new RecyclerItem();
 
         item.setRank(rank);
