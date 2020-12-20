@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,7 +84,11 @@ public class UserFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         ImageButton signOutBt = v.findViewById(R.id.signOutBt);
 
-        signOutBt.setOnClickListener(new View.OnClickListener(){
+        double userRecord =  getArguments().getDouble("userRecord");
+        TextView recordTV = v.findViewById(R.id.record_textView);
+        recordTV.setText(String.valueOf(userRecord));
+
+                signOutBt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
