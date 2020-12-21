@@ -86,7 +86,7 @@ public class UserFragment extends Fragment {
 
         double userRecord =  getArguments().getDouble("userRecord");
         TextView recordTV = v.findViewById(R.id.record_textView);
-        recordTV.setText(String.valueOf(userRecord));
+        recordTV.setText(String.valueOf(userRecord).split("\\.")[0]);
 
                 signOutBt.setOnClickListener(new View.OnClickListener(){
             @Override
