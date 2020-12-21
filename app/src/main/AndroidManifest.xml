@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hitthetimetoandrod">
+    package="com.minwooseonno.hitthetimetoandrod">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,11 +13,11 @@
         android:roundIcon="@drawable/timer_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.HitthetimeToAndrod">
-        <activity android:name=".PopupGameOverActivity"></activity>
-        <activity android:name=".TimeAttackActivity" />
-        <activity android:name=".GameActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.minwooseonno.hitthetimetoandrod.PopupGameOverActivity"></activity>
+        <activity android:name="com.minwooseonno.hitthetimetoandrod.TimeAttackActivity" />
+        <activity android:name="com.minwooseonno.hitthetimetoandrod.GameActivity" />
+        <activity android:name="com.minwooseonno.hitthetimetoandrod.LoginActivity" />
+        <activity android:name="com.minwooseonno.hitthetimetoandrod.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
