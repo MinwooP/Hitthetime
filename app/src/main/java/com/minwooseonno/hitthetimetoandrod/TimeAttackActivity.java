@@ -113,21 +113,21 @@ public class TimeAttackActivity extends AppCompatActivity {
                         text_Goal.setText(goalTime);
                     }
 
-                    if (COUNT_GAME != 6) {//COUNT GAME이 5가 아닐때, 게임이 진행중일 때
+                    if (COUNT_GAME != 6) {//COUNT GAME이 6가 아닐때, 게임이 진행중일 때
                         if (COUNT_GAME == 1) {
-                            Log.e("COUNT_GAME STATE", "COUNT GAME 1" + score);
+                            Log.e("COUNT_GAME STATE", "COUNT GAME 1 " + score);
                             text_Score1.setText(score + "");
                         } else if (COUNT_GAME == 2) {
-                            Log.e("COUNT_GAME STATE", "COUNT GAME 2" + score);
+                            Log.e("COUNT_GAME STATE", "COUNT GAME 2 " + score);
                             text_Score2.setText(score + "");
                         } else if (COUNT_GAME == 3) {
-                            Log.e("COUNT_GAME STATE", "COUNT GAME 3" + score);
+                            Log.e("COUNT_GAME STATE", "COUNT GAME 3 " + score);
                             text_Score3.setText(score + "");
                         } else if (COUNT_GAME == 4) {
-                            Log.e("COUNT_GAME STATE", "COUNT GAME 4" + score);
+                            Log.e("COUNT_GAME STATE", "COUNT GAME 4 " + score);
                             text_Score4.setText(score + "");
                         } else if (COUNT_GAME == 5) {
-                            Log.e("COUNT_GAME STATE", "COUNT GAME 5" + score);
+                            Log.e("COUNT_GAME STATE", "COUNT GAME 5 " + score);
                             text_Score5.setText(score + "");
                             handler.removeCallbacks(runnable);
                             String idToken = getIntent().getStringExtra("idToken");
@@ -137,17 +137,21 @@ public class TimeAttackActivity extends AppCompatActivity {
                             finish();
                             startActivity(intent);
                         }
-                    }
-                    Handler timer = new Handler();
-                    timer.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            StartTime = SystemClock.uptimeMillis();
-                            MillisecondTime = 0;
-                            UpdateTime = 0;
-                            handler.postDelayed(runnable, 0);
+                        if(COUNT_GAME < 5){
+                            Handler timer = new Handler();
+                            timer.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    StartTime = SystemClock.uptimeMillis();
+                                    MillisecondTime = 0;
+                                    UpdateTime = 0;
+                                    handler.postDelayed(runnable, 0);
+                                }
+                            }, 500);
                         }
-                    }, 500);
+
+                    }
+
 
                 }
             }
@@ -157,11 +161,13 @@ public class TimeAttackActivity extends AppCompatActivity {
 
     public Runnable runnable = new Runnable() {
         public void run() {
+            if(COUNT_GAME >= 5)
+                return ;
             MillisecondTime = SystemClock.uptimeMillis() - StartTime;
             UpdateTime = TimeBuff + MillisecondTime;
             Seconds = (int) (UpdateTime / 1000);
             Seconds = Seconds % 60;
-            if (Seconds > 9) {
+            if (Seconds > 9 ) {
                 btn_Stop.post(new Runnable() {
                     @Override
                     public void run() {

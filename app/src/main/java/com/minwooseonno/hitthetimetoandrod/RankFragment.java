@@ -2,14 +2,20 @@ package com.minwooseonno.hitthetimetoandrod;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,7 +33,7 @@ public class RankFragment extends Fragment {
     RecyclerView mRecyclerView = null;
     RecyclerTextAdapter mAdapter = null;
     ArrayList<RecyclerItem> mList = new ArrayList<RecyclerItem>();
-
+    private BottomNavigationView mBottomNV;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseRef;
@@ -70,6 +76,7 @@ public class RankFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -86,7 +93,23 @@ public class RankFragment extends Fragment {
         View view1 = inflater.inflate(R.layout.fragment_rank, container, false);
         /* activity에서 fragment로 넘어오면서 mRecyclerView = findViewById(R.id.recycler1);
          * 아래 문장으로 바꾸어줌 */
+        SwipeRefreshLayout mSwipeRefreshLayout = view1.findViewById(R.id.swipe_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.commit();
 
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable(){
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 500);
+            }
+        });
         mRecyclerView = (RecyclerView) view1.findViewById(R.id.recycler1);
         /* mRecyclerView = container.findViewById(R.id.recycler1) ;
            원래 이 코드로 해서 오류 났었음 ;;
@@ -106,7 +129,6 @@ public class RankFragment extends Fragment {
             if(count > 10 || FP.getRecord() == Double.MAX_VALUE){
                 break;
             }
-
             mAdapter.addItem(String.valueOf(count), FP.getName(), Double.toString(FP.getRecord()));
             count++;
         }
