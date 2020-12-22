@@ -40,6 +40,7 @@ public class GameActivity extends AppCompatActivity {
     private double userRecord;
 
     private List<FirebasePost> arrayList;
+    private Boolean flag_dataChange = false;
 
 
     @Override
@@ -113,6 +114,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
+
         if (fragment == null) {
             if (id == R.id.navigation_game) {
                 fragment = new GameFragment();
@@ -133,13 +135,25 @@ public class GameActivity extends AppCompatActivity {
             }
             fragmentTransaction.add(R.id.frameLayouts, fragment, tag);
         } else {
-            fragmentTransaction.show(fragment);
+            if(flag_dataChange && id == R.id.navigation_rank){
+
+                fragmentTransaction.remove(fragment);
+                fragment = new RankFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("arrayList", (ArrayList<? extends Parcelable>) arrayList);
+
+                fragment.setArguments(bundle);
+                flag_dataChange = false;
+            }else{
+                fragmentTransaction.show(fragment);
+            }
+
         }
 
         fragmentTransaction.setPrimaryNavigationFragment(fragment);
         fragmentTransaction.setReorderingAllowed(true);
         fragmentTransaction.commitNow();
-
     }
 
     // 마지막으로 뒤로 가기 버튼을 눌렀던 시간 저장

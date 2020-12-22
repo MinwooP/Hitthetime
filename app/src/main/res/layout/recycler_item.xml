@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- RecyclerView 각 아이템에 표시될 아이템 뷰에 대한 Layout 구성 -->
+<?xml version="1.0" encoding="utf-8"?><!-- RecyclerView 각 아이템에 표시될 아이템 뷰에 대한 Layout 구성 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,16 +9,14 @@
     <TextView
         android:id="@+id/rank"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/htt_right"
-        android:textSize="20dp"
-        app:autoSizeMaxTextSize="20dp"
-        app:autoSizeMinTextSize="10dp"
-        app:autoSizeTextType="uniform"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rankIcon"
-        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintHorizontal_weight="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,12 +24,13 @@
         android:id="@+id/rankIcon"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/name"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/rank"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_gold_medal"/>
+        app:srcCompat="@drawable/ic_gold_medal" />
 
     <TextView
         android:id="@+id/name"
