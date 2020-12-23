@@ -63,9 +63,9 @@ public class GameActivity extends AppCompatActivity {
                     arrayList.add(new FirebasePost(name, bestRecord));
                     Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue()); //{bestRecord=64, name=박민우}'
                 }
-
-                userRecord = Double.parseDouble(dataSnapshot.child(getIntent().getStringExtra("idToken")).child("bestRecord").getValue().toString());
                 flag_dataChange = true;
+                userRecord = Double.parseDouble(dataSnapshot.child(getIntent().getStringExtra("idToken")).child("bestRecord").getValue().toString());
+
                 Collections.sort(arrayList, new Comparator<FirebasePost>() {
 
                     Collator collator = Collator.getInstance();
@@ -115,7 +115,6 @@ public class GameActivity extends AppCompatActivity {
         }
 
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
-
         if (fragment == null) {
             if (id == R.id.navigation_game) {
                 fragment = new GameFragment();
@@ -154,6 +153,7 @@ public class GameActivity extends AppCompatActivity {
         fragmentTransaction.setPrimaryNavigationFragment(fragment);
         fragmentTransaction.setReorderingAllowed(true);
         fragmentTransaction.commitNow();
+
     }
 
     // 마지막으로 뒤로 가기 버튼을 눌렀던 시간 저장

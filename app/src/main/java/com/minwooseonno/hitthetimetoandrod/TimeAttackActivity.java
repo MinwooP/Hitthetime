@@ -159,14 +159,13 @@ public class TimeAttackActivity extends AppCompatActivity {
 
     public Runnable runnable = new Runnable() {
         public void run() {
-            if(COUNT_GAME == 5)
-                return;
-
+            if(COUNT_GAME >= 5)
+                return ;
             MillisecondTime = SystemClock.uptimeMillis() - StartTime;
             UpdateTime = TimeBuff + MillisecondTime;
             Seconds = (int) (UpdateTime / 1000);
             Seconds = Seconds % 60;
-            if (Seconds > 9 && COUNT_GAME < 5) {
+            if (Seconds > 9) {
                 btn_Stop.post(new Runnable() {
                     @Override
                     public void run() {
