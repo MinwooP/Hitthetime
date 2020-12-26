@@ -143,7 +143,8 @@ public class GameActivity extends AppCompatActivity {
 
                 fragment.setArguments(bundle);
 
-                fragmentTransaction.replace(R.id.navigation_rank, fragment);
+                fragmentTransaction.replace(R.id.frameLayouts, fragment, tag);
+
                 flag_dataChange = false;
             }else{
                 fragmentTransaction.show(fragment);
