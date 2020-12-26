@@ -39,7 +39,9 @@ public class GameActivity extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private double userRecord;
 
-    private boolean flag_dataChange = false;
+    private boolean rankDataChgFlag = false;
+    private boolean usrDataChgFlag = false;
+
     private List<FirebasePost> arrayList;
 
 
@@ -63,7 +65,8 @@ public class GameActivity extends AppCompatActivity {
                     arrayList.add(new FirebasePost(name, bestRecord));
                     Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue()); //{bestRecord=64, name=박민우}'
                 }
-                flag_dataChange = true;
+                rankDataChgFlag = true;
+                usrDataChgFlag = true;
                 userRecord = Double.parseDouble(dataSnapshot.child(getIntent().getStringExtra("idToken")).child("bestRecord").getValue().toString());
 
                 Collections.sort(arrayList, new Comparator<FirebasePost>() {
@@ -135,7 +138,7 @@ public class GameActivity extends AppCompatActivity {
             }
             fragmentTransaction.add(R.id.frameLayouts, fragment, tag);
         } else {
-            if(flag_dataChange && id == R.id.navigation_rank){
+            if(rankDataChgFlag && id == R.id.navigation_rank){
                 fragment = new RankFragment();
 
                 Bundle bundle = new Bundle();
@@ -145,8 +148,22 @@ public class GameActivity extends AppCompatActivity {
 
                 fragmentTransaction.replace(R.id.frameLayouts, fragment, tag);
 
-                flag_dataChange = false;
-            }else{
+                rankDataChgFlag = false;
+
+            }else if (usrDataChgFlag && id == R.id.navigation_user){
+
+                fragment = new UserFragment();
+                Bundle bundle = new Bundle();
+                bundle.putDouble("userRecord", userRecord);
+
+                fragment.setArguments(bundle);
+
+                fragmentTransaction.replace(R.id.frameLayouts, fragment, tag);
+
+                usrDataChgFlag = false;
+
+            }
+            else{
                 fragmentTransaction.show(fragment);
             }
         }
