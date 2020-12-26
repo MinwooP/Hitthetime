@@ -2,12 +2,16 @@
 
 <img src="./images/Hitthetime_LoginActivity.png" width="150"/> <img src="./images/Hitthetime_GameFragment.png" width="150"/> <img src="./images/Hitthetime_GameStart.png" width="150"/> <img src="./images/Hitthetime_RankFragment.png" width="150"/> <img src="./images/Hitthetime_UserFragment.png" width="150"/>
 
+<br>
 
 ## 앱 소개
 
 - 시간 맞추기 게임
 - 스톱워치를 하듯이 랜덤으로 형성되는 시간을 5번의 기회에 걸쳐 맞춰 오차의 합이 가장 적은사람이 이기는 게임
 - 현재 코로나로 인해 지루하고 무료한 일상 속, 아무 생각없이 시간을 보내기에 안성맞춤인 게임
+
+<br>
+<br>
 
 ## 사용기술
 
@@ -17,6 +21,8 @@
   - Database
 - Adobe xd
 
+<br>
+<br>
 
 ## Team. MinWoosunNo 🧸
 
