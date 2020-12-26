@@ -19,9 +19,9 @@
 
 ## Team. MinWoosunNo 🧸
 
-|<img src="https://avatars2.githubusercontent.com/u/31370590?s=400&u=04bc74ed3bceba17bb4591518845a7c2d150a95a&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|
+|<img src="https://avatars3.githubusercontent.com/u/31370590?s=400&u=69c8ca79448ddcdb787ed5613f9c9cf5f7467995&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|
 |:-:|:-:|:-:|
-|J035 박민우|J060 강우선|J109 안은노|
+|19-71001284 박민우|19-70000030 강우선|21-mipel 안은노|
 | [@MinwooP](https://github.com/MinwooP) | [@Kangwoosun](https://github.com/Kangwoosun) | [@Eunno-An](https://github.com/Eunno-An)
 
 
