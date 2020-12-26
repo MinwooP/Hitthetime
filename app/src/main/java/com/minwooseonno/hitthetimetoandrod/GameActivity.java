@@ -39,7 +39,9 @@ public class GameActivity extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private double userRecord;
 
-    private boolean flag_dataChange = false;
+    private boolean rankDataChgFlag = false;
+    private boolean usrDataChgFlag = false;
+
     private List<FirebasePost> arrayList;
 
 
@@ -56,13 +58,15 @@ public class GameActivity extends AppCompatActivity {
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String name = snapshot.child("name").getValue().toString();
                     double bestRecord = Double.parseDouble(snapshot.child("bestRecord").getValue().toString());
                     arrayList.add(new FirebasePost(name, bestRecord));
                     Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue()); //{bestRecord=64, name=박민우}'
                 }
-                flag_dataChange = true;
+                rankDataChgFlag = true;
+                usrDataChgFlag = true;
                 userRecord = Double.parseDouble(dataSnapshot.child(getIntent().getStringExtra("idToken")).child("bestRecord").getValue().toString());
 
                 Collections.sort(arrayList, new Comparator<FirebasePost>() {
@@ -134,19 +138,39 @@ public class GameActivity extends AppCompatActivity {
             }
             fragmentTransaction.add(R.id.frameLayouts, fragment, tag);
         } else {
-            if(flag_dataChange && id == R.id.navigation_rank){
-                fragment = fragmentManager.findFragmentById(R.id.frameLayouts);
+            if(rankDataChgFlag && id == R.id.navigation_rank){
+                fragment = new RankFragment();
+
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("arrayList", (ArrayList<? extends Parcelable>) arrayList);
+
                 fragment.setArguments(bundle);
-                flag_dataChange = false;
+
+                fragmentTransaction.replace(R.id.frameLayouts, fragment, tag);
+
+                rankDataChgFlag = false;
+
+            }else if (usrDataChgFlag && id == R.id.navigation_user){
+
+                fragment = new UserFragment();
+                Bundle bundle = new Bundle();
+                bundle.putDouble("userRecord", userRecord);
+
+                fragment.setArguments(bundle);
+
+                fragmentTransaction.replace(R.id.frameLayouts, fragment, tag);
+
+                usrDataChgFlag = false;
+
             }
-            fragmentTransaction.show(fragment);
+            else{
+                fragmentTransaction.show(fragment);
+            }
         }
 
         fragmentTransaction.setPrimaryNavigationFragment(fragment);
         fragmentTransaction.setReorderingAllowed(true);
-        fragmentTransaction.commit();
+        fragmentTransaction.commitNow();
 
     }
 
@@ -176,10 +200,10 @@ public class GameActivity extends AppCompatActivity {
             toast.cancel();
             toast = Toast.makeText(this,"이용해 주셔서 감사합니다.",Toast.LENGTH_LONG);
             toast.show();
-            /*
+            finish();
             System.exit(0);
             android.os.Process.killProcess(android.os.Process.myPid());
-             */
+
         }
     }
 }

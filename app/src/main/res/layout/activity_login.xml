@@ -91,14 +91,13 @@
 
     <Button
         android:id="@+id/blind"
-        android:layout_width="442dp"
-        android:layout_height="774dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--    android:background="#FFFFFF"-->
-    <!-- hello -->

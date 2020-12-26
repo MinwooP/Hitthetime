@@ -35,7 +35,8 @@ public class PopupGameOverActivity extends Activity {
         Double result = intent.getDoubleExtra("Result", 0);
 
 
-        text_Result.setText(result.toString());
+        text_Result.setText(result.toString().split("\\.")[0]);
+
         text_Result.bringToFront();
         btn_home.setOnClickListener(new View.OnClickListener(){
             @Override

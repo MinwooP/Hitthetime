@@ -7,10 +7,10 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/timer_icon"
+        android:icon="@drawable/ic_app_icon"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@drawable/timer_icon"
+        android:roundIcon="@drawable/ic_app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.HitthetimeToAndrod">
         <activity android:name="com.minwooseonno.hitthetimetoandrod.PopupGameOverActivity"></activity>

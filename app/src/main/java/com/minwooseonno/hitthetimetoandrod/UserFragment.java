@@ -84,8 +84,12 @@ public class UserFragment extends Fragment {
 
         double userRecord =  getArguments().getDouble("userRecord");
         TextView recordTV = v.findViewById(R.id.record_textView);
-        recordTV.setText(String.valueOf(userRecord));
-
+        if (userRecord == Double.MAX_VALUE){
+            recordTV.setText("");
+        }
+        else {
+            recordTV.setText(String.valueOf(userRecord).split("\\.")[0]);
+        }
                 signOutBt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -118,7 +122,7 @@ public class UserFragment extends Fragment {
                 intent.putExtra("isLogOut", flag);
 
                 startActivity(intent);
-
+                getActivity().finish();
             }
         });
 
