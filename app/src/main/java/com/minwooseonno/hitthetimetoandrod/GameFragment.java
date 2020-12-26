@@ -73,6 +73,7 @@ public class GameFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), TimeAttackActivity.class);
                 intent.putExtra("idToken", idToken);
                 startActivity(intent);
+
             }
         });
         return v;

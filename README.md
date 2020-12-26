@@ -1,6 +1,9 @@
 # HitTheTime
 <br>
 <br>
+<img src="./images/Hitthetime_LoginActivity.png" width="150"><img src="./images/Hitthetime_GameFragment.png" width="150"><img src="./images/Hitthetime_GameStart.png" width="150"><img src="./images/Hitthetime_RankFragment.png" width="150"><img src="./images/Hitthetime_UserFragment.png" width="150">
+<br>
+<br>
 
 ## 앱 소개
 

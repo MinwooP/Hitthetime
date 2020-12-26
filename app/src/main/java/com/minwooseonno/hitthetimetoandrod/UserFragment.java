@@ -122,7 +122,7 @@ public class UserFragment extends Fragment {
                 intent.putExtra("isLogOut", flag);
 
                 startActivity(intent);
-
+                getActivity().finish();
             }
         });
 

@@ -200,10 +200,10 @@ public class GameActivity extends AppCompatActivity {
             toast.cancel();
             toast = Toast.makeText(this,"이용해 주셔서 감사합니다.",Toast.LENGTH_LONG);
             toast.show();
-            /*
+            finish();
             System.exit(0);
             android.os.Process.killProcess(android.os.Process.myPid());
-             */
+
         }
     }
 }
