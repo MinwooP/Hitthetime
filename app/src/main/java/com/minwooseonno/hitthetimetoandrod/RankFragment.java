@@ -93,6 +93,7 @@ public class RankFragment extends Fragment {
         View view1 = inflater.inflate(R.layout.fragment_rank, container, false);
         /* activity에서 fragment로 넘어오면서 mRecyclerView = findViewById(R.id.recycler1);
          * 아래 문장으로 바꾸어줌 */
+        /*
         SwipeRefreshLayout mSwipeRefreshLayout = view1.findViewById(R.id.swipe_layout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -109,7 +110,7 @@ public class RankFragment extends Fragment {
                     }
                 }, 500);
             }
-        });
+        });*/
         mRecyclerView = (RecyclerView) view1.findViewById(R.id.recycler1);
         /* mRecyclerView = container.findViewById(R.id.recycler1) ;
            원래 이 코드로 해서 오류 났었음 ;;
@@ -129,7 +130,7 @@ public class RankFragment extends Fragment {
             if(count > 10 || FP.getRecord() == Double.MAX_VALUE){
                 break;
             }
-            mAdapter.addItem(String.valueOf(count), FP.getName(), Double.toString(FP.getRecord()));
+            mAdapter.addItem(String.valueOf(count), FP.getName(), Double.toString(FP.getRecord()).split("\\.")[0]);
             count++;
         }
         // Inflate the layout for this fragment
