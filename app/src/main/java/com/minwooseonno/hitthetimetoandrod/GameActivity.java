@@ -142,8 +142,6 @@ public class GameActivity extends AppCompatActivity {
                 flag_dataChange = false;
             }
             fragmentTransaction.show(fragment);
-
-
         }
 
         fragmentTransaction.setPrimaryNavigationFragment(fragment);
