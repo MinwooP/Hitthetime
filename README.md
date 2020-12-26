@@ -1,23 +1,29 @@
-# Welcome to StackEdit!
+# HitTheTime
+<br>
+<br>
 
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+## 앱 소개
+
+- 시간 맞추기 게임
+- 스톱워치를 하듯이 랜덤으로 형성되는 시간을 5번의 기회에 걸쳐 맞춰 오차의 합이 가장 적은사람이 이기는 게임
+- 현재 코로나로 인해 지루하고 무료한 일상 속, 아무 생각없이 시간을 보내기에 안성맞춤인 게임
+
+## 사용기술
+
+- Android
+- Firebase
+  - Auth
+  - Database
+- Adobe xd
 
 
-# Files
+## Team. MinWoosunNo 🧸
 
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
+|<img src="https://avatars2.githubusercontent.com/u/31370590?s=400&u=04bc74ed3bceba17bb4591518845a7c2d150a95a&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|
+|:-:|:-:|:-:|
+|J035 박민우|J060 강우선|J109 안은노|
+| [@MinwooP](https://github.com/MinwooP) | [@Kangwoosun](https://github.com/Kangwoosun) | [@Eunno-An](https://github.com/Eunno-An)
 
-## Create files and folders
-
-The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.
-
-## Switch to another file
-
-All your files and folders are presented as a tree in the file explorer. You can switch from one to another by clicking a file in the tree.
-
-## Rename a file
-
-You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
 
 ## Delete a file
 
