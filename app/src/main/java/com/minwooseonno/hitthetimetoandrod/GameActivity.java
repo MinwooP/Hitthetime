@@ -39,8 +39,8 @@ public class GameActivity extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private double userRecord;
 
+    private boolean flag_dataChange = false;
     private List<FirebasePost> arrayList;
-    private Boolean flag_dataChange = false;
 
 
     @Override
@@ -53,7 +53,7 @@ public class GameActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         databaseRef = database.getReference("/users/");
-        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -62,7 +62,7 @@ public class GameActivity extends AppCompatActivity {
                     arrayList.add(new FirebasePost(name, bestRecord));
                     Log.d("LoginActivity", "Single ValueEventListener : " + snapshot.getValue()); //{bestRecord=64, name=박민우}'
                 }
-
+                flag_dataChange = true;
                 userRecord = Double.parseDouble(dataSnapshot.child(getIntent().getStringExtra("idToken")).child("bestRecord").getValue().toString());
 
                 Collections.sort(arrayList, new Comparator<FirebasePost>() {
@@ -114,7 +114,6 @@ public class GameActivity extends AppCompatActivity {
         }
 
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
-
         if (fragment == null) {
             if (id == R.id.navigation_game) {
                 fragment = new GameFragment();
@@ -136,24 +135,21 @@ public class GameActivity extends AppCompatActivity {
             fragmentTransaction.add(R.id.frameLayouts, fragment, tag);
         } else {
             if(flag_dataChange && id == R.id.navigation_rank){
-
-                fragmentTransaction.remove(fragment);
-                fragment = new RankFragment();
-
+                fragment = fragmentManager.findFragmentById(R.id.frameLayouts);
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("arrayList", (ArrayList<? extends Parcelable>) arrayList);
-
                 fragment.setArguments(bundle);
                 flag_dataChange = false;
-            }else{
-                fragmentTransaction.show(fragment);
             }
+            fragmentTransaction.show(fragment);
+
 
         }
 
         fragmentTransaction.setPrimaryNavigationFragment(fragment);
         fragmentTransaction.setReorderingAllowed(true);
-        fragmentTransaction.commitNow();
+        fragmentTransaction.commit();
+
     }
 
     // 마지막으로 뒤로 가기 버튼을 눌렀던 시간 저장

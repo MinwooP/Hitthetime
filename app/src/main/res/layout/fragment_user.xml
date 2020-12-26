@@ -48,7 +48,6 @@
         android:id="@+id/contact_us_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_contact_us"
         app:layout_constraintBottom_toTopOf="@+id/url_view"
