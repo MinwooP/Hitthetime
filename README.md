@@ -1,6 +1,8 @@
 # HitTheTime ⏱
 
-<img src="./images/Hitthetime_LoginActivity.png" width="150"/> <img src="./images/Hitthetime_GameFragment.png" width="150"/> <img src="./images/Hitthetime_GameStart.png" width="150"/> <img src="./images/Hitthetime_RankFragment.png" width="150"/> <img src="./images/Hitthetime_UserFragment.png" width="150"/>
+<img src="./images/Hitthetime_MainActivity.png" width="150"/> <img src="./images/Hitthetime_LoginActivity.png" width="150"/> <img src="./images/Hitthetime_GameFragment.png" width="150"/> <img src="./images/Hitthetime_GameStart.png" width="150"/> <img src="./images/Hitthetime_GameInside.png" width="150"/>
+
+<img src="./images/Hitthetime_GameCorrect.png" width="150"/> <img src="./images/Hitthetime_GameWrong.png" width="150"/> <img src="./images/Hitthetime_GameResult.png" width="150"/> <img src="./images/Hitthetime_RankFragment.png" width="150"/> <img src="./images/Hitthetime_UserFragment.png" width="150"/>
 
 <br>
 
@@ -24,7 +26,7 @@
 
 ## Team. MinWoosunNo 🧸
 
-|<img src="https://avatars3.githubusercontent.com/u/31370590?s=400&u=69c8ca79448ddcdb787ed5613f9c9cf5f7467995&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|
+|<img src="https://avatars3.githubusercontent.com/u/31370590?s=400&u=69c8ca79448ddcdb787ed5613f9c9cf5f7467995&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/29699207?s=460&u=9cb648ac080b2f5979e9194d56c25692ec224972&v=4" width=300/>|<img src="https://avatars3.githubusercontent.com/u/33450365?s=400&u=6687a66d2bb5bc347ece566d33cdda9d8f5a7657&v=4" width=300/>|
 |:-:|:-:|:-:|
 |19-71001284 박민우|19-70000030 강우선|21-mipel 안은노|
 | [@MinwooP](https://github.com/MinwooP) | [@Kangwoosun](https://github.com/Kangwoosun) | [@Eunno-An](https://github.com/Eunno-An)
