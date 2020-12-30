@@ -43,7 +43,7 @@
 
 <br>
 
-## MinwooP 🐤
+## MinwooP 🦄
 
 ### UI design
  - overall UI design using "Adobe xd"
