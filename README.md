@@ -31,11 +31,16 @@
 |19-71001284 박민우|19-70000030 강우선|21-mipel 안은노|
 | [@MinwooP](https://github.com/MinwooP) | [@Kangwoosun](https://github.com/Kangwoosun) | [@Eunno-An](https://github.com/Eunno-An)
 
+<br>
+
+<br>
 
 ## 역할분담
 
-### [MinwooP](https://github.com/MinwooP)
+<br>
 
+### [MinwooP](https://github.com/MinwooP)
+<br>
 
 **UI design**
  - overall UI design using "Adobe xd"
@@ -43,13 +48,18 @@
  - adjust UI component's ratio according to resolution of each device
  - make App icon, screenshots, graphic images for app release
 
+<br>
+
 **Fragment design**
  - switch screen among the fragments using BottomNavigationView
  - customize RecyclerView by implementing Recycleritem, RecyclerTextAdapter class
 
+<br>
 
 
 ### [Kangwoosun](https://github.com/Kangwoosun)
+
+<br>
 
 **Login**
  - FirebaseAuth
@@ -57,20 +67,28 @@
  - FacebookLogin (Facebook button)
  - AutoLogin(SharedPreferences)
 
+<br>
+
 **DB**
  - Firebasedatabase, Referenece
  - database read (DataSnapshot) & write (FirebasePost, setValue)
  - data sort (Collection, Comparator)
  - Bundle (putParcelableArrayList ..)
 
+<br>
 
 ### [Eunno-An](https://github.com/Eunno-An)
+
+<br>
 
 **EMPTY**
 
 
+<br>
 
 ## 개선할 점
+
+<br>
 
  - 종종 타이머가 불규칙적으로 진행되는 사항 게선
  - 로그인 가능한 SNS && Email 로그인 추가
