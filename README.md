@@ -46,7 +46,6 @@
 <br>
 
 ## MinwooP
-<br>
 
 ### UI design
  - overall UI design using "Adobe xd"
@@ -64,7 +63,6 @@
 
 ## Kangwoosun
 
-<br>
 
 ### Login
  - FirebaseAuth
