@@ -37,15 +37,13 @@
 
 ## 역할분담
 
-<br>
-
  - MinwooP : Ui
  - Kangwoosun : Login, DB
  - Eunno-An : PM, Timer
 
 <br>
 
-## MinwooP
+## MinwooP 🐤
 
 ### UI design
  - overall UI design using "Adobe xd"
@@ -61,7 +59,7 @@
 <br>
 
 
-## Kangwoosun
+## Kangwoosun 🦊
 
 
 ### Login
@@ -79,7 +77,7 @@
 
 <br>
 
-## Eunno-An
+## Eunno-An 🐼
 
 <br>
 
