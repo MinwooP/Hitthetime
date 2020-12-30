@@ -54,7 +54,6 @@
  - adjust UI component's ratio according to resolution of each device
  - make App icon, screenshots, graphic images for app release
 
-<br>
 
 ### Fragment design
  - switch screen among the fragments using BottomNavigationView
@@ -73,7 +72,6 @@
  - FacebookLogin (Facebook button)
  - AutoLogin(SharedPreferences)
 
-<br>
 
 ### DB
  - Firebasedatabase, Referenece
