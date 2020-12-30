@@ -10,13 +10,13 @@
 
 - 시간 맞추기 게임
 - 스톱워치를 하듯이 랜덤으로 형성되는 시간을 5번의 기회에 걸쳐 맞춰 오차의 합이 가장 적은사람이 이기는 게임
-- 현재 코로나로 인해 지루하고 무료한 일상 속, 아무 생각없이 시간을 보내기에 안성맞춤인 게임
+- 현재 코로나로 인해 지루하고 무료한 일상 속, 시간을 보내기에 안성맞춤인 게임
 
 <br>
 
 ## 사용기술
 
-- Android
+- Android(Java)
 - Firebase
   - Auth
   - Database
@@ -31,126 +31,65 @@
 |19-71001284 박민우|19-70000030 강우선|21-mipel 안은노|
 | [@MinwooP](https://github.com/MinwooP) | [@Kangwoosun](https://github.com/Kangwoosun) | [@Eunno-An](https://github.com/Eunno-An)
 
+<br>
 
-## Delete a file
+<br>
 
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
+## 역할분담
 
-## Export a file
+ - MinwooP : Ui
+ - Kangwoosun : Login, DB
+ - Eunno-An : PM, Timer
 
-You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
+<br>
 
+## MinwooP 🦄
 
-# Synchronization
-
-Synchronization is one of the biggest features of StackEdit. It enables you to synchronize any file in your workspace with other files stored in your **Google Drive**, your **Dropbox** and your **GitHub** accounts. This allows you to keep writing on other devices, collaborate with people you share the file with, integrate easily into your workflow... The synchronization mechanism takes place every minute in the background, downloading, merging, and uploading file modifications.
-
-There are two types of synchronization and they can complement each other:
-
-- The workspace synchronization will sync all your files, folders and settings automatically. This will allow you to fetch your workspace on any other device.
-	> To start syncing your workspace, just sign in with Google in the menu.
-
-- The file synchronization will keep one file of the workspace synced with one or multiple files in **Google Drive**, **Dropbox** or **GitHub**.
-	> Before starting to sync files, you must link an account in the **Synchronize** sub-menu.
-
-## Open a file
-
-You can open a file from **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Open from**. Once opened in the workspace, any modification in the file will be automatically synced.
-
-## Save a file
-
-You can save any file of the workspace to **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Save on**. Even if a file in the workspace is already synced, you can save it to another location. StackEdit can sync one file with multiple locations and accounts.
-
-## Synchronize a file
-
-Once your file is linked to a synchronized location, StackEdit will periodically synchronize it by downloading/uploading any modification. A merge will be performed if necessary and conflicts will be resolved.
-
-If you just have modified your file and you want to force syncing, click the **Synchronize now** button in the navigation bar.
-
-> **Note:** The **Synchronize now** button is disabled if you have no file to synchronize.
-
-## Manage file synchronization
-
-Since one file can be synced with multiple locations, you can list and manage synchronized locations by clicking **File synchronization** in the **Synchronize** sub-menu. This allows you to list and remove synchronized locations that are linked to your file.
+- UI design
+  - overall UI design using "Adobe xd"
+  - design drawble resource icon and color to be used for App's ImageView, Button, Background.
+  - adjust UI component's ratio according to resolution of each device
+  - make App icon, screenshots, graphic images for app release
 
 
-# Publication
+- Fragment design
+  - switch screen among the fragments using BottomNavigationView
+  - customize RecyclerView by implementing Recycleritem, RecyclerTextAdapter class
 
-Publishing in StackEdit makes it simple for you to publish online your files. Once you're happy with a file, you can publish it to different hosting platforms like **Blogger**, **Dropbox**, **Gist**, **GitHub**, **Google Drive**, **WordPress** and **Zendesk**. With [Handlebars templates](http://handlebarsjs.com/), you have full control over what you export.
-
-> Before starting to publish, you must link an account in the **Publish** sub-menu.
-
-## Publish a File
-
-You can publish your file by opening the **Publish** sub-menu and by clicking **Publish to**. For some locations, you can choose between the following formats:
-
-- Markdown: publish the Markdown text on a website that can interpret it (**GitHub** for instance),
-- HTML: publish the file converted to HTML via a Handlebars template (on a blog for example).
-
-## Update a publication
-
-After publishing, StackEdit keeps your file linked to that publication which makes it easy for you to re-publish it. Once you have modified your file and you want to update your publication, click on the **Publish now** button in the navigation bar.
-
-> **Note:** The **Publish now** button is disabled if your file has not been published yet.
-
-## Manage file publication
-
-Since one file can be published to multiple locations, you can list and manage publish locations by clicking **File publication** in the **Publish** sub-menu. This allows you to list and remove publication locations that are linked to your file.
+<br>
 
 
-# Markdown extensions
-
-StackEdit extends the standard Markdown syntax by adding extra **Markdown extensions**, providing you with some nice features.
-
-> **ProTip:** You can disable any **Markdown extension** in the **File properties** dialog.
+## Kangwoosun 🦊
 
 
-## SmartyPants
-
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+- Login
+  - FirebaseAuth
+  - GoogleLogin
+  - FacebookLogin (Facebook button)
+  - AutoLogin(SharedPreferences)
 
 
-## KaTeX
+- DB
+  - Firebasedatabase, Referenece
+  - database read (DataSnapshot) & write (FirebasePost, setValue)
+  - data sort (Collection, Comparator)
+  - Bundle (putParcelableArrayList ..)
 
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
+<br>
 
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+## Eunno-An 🐼
 
 
-## UML diagrams
+**EMPTY**
 
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
 
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+<br>
 
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
+## 개선할 점
 
-And this will produce a flow chart:
+ - 종종 타이머가 불규칙적으로 진행되는 사항 개선
+ - SNS & Email 로그인 추가
+ - 게임진행중 효과음 추가
+ - 게임 모드 추가, 상점기능 활성화, 친구추가 기능 구현
 
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+
