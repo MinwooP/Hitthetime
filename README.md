@@ -46,15 +46,15 @@
 ## MinwooP 🦄
 
 - UI design
- - overall UI design using "Adobe xd"
- - design drawble resource icon and color to be used for App's ImageView, Button, Background.
- - adjust UI component's ratio according to resolution of each device
- - make App icon, screenshots, graphic images for app release
+  - overall UI design using "Adobe xd"
+  - design drawble resource icon and color to be used for App's ImageView, Button, Background.
+  - adjust UI component's ratio according to resolution of each device
+  - make App icon, screenshots, graphic images for app release
 
 
 - Fragment design
- - switch screen among the fragments using BottomNavigationView
- - customize RecyclerView by implementing Recycleritem, RecyclerTextAdapter class
+  - switch screen among the fragments using BottomNavigationView
+  - customize RecyclerView by implementing Recycleritem, RecyclerTextAdapter class
 
 <br>
 
@@ -63,17 +63,17 @@
 
 
 - Login
- - FirebaseAuth
- - GoogleLogin
- - FacebookLogin (Facebook button)
- - AutoLogin(SharedPreferences)
+  - FirebaseAuth
+  - GoogleLogin
+  - FacebookLogin (Facebook button)
+  - AutoLogin(SharedPreferences)
 
 
 - DB
- - Firebasedatabase, Referenece
- - database read (DataSnapshot) & write (FirebasePost, setValue)
- - data sort (Collection, Comparator)
- - Bundle (putParcelableArrayList ..)
+  - Firebasedatabase, Referenece
+  - database read (DataSnapshot) & write (FirebasePost, setValue)
+  - data sort (Collection, Comparator)
+  - Bundle (putParcelableArrayList ..)
 
 <br>
 
