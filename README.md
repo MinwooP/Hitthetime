@@ -39,10 +39,16 @@
 
 <br>
 
-### [MinwooP](https://github.com/MinwooP)
+ - MinwooP : Ui
+ - Kangwoosun : Login, DB
+ - Eunno-An : PM, Timer
+
 <br>
 
-**UI design**
+## MinwooP
+<br>
+
+### UI design
  - overall UI design using "Adobe xd"
  - design drawble resource icon and color to be used for App's ImageView, Button, Background.
  - adjust UI component's ratio according to resolution of each device
@@ -50,18 +56,18 @@
 
 <br>
 
-**Fragment design**
+### Fragment design
  - switch screen among the fragments using BottomNavigationView
  - customize RecyclerView by implementing Recycleritem, RecyclerTextAdapter class
 
 <br>
 
 
-### [Kangwoosun](https://github.com/Kangwoosun)
+## Kangwoosun
 
 <br>
 
-**Login**
+### Login
  - FirebaseAuth
  - GoogleLogin
  - FacebookLogin (Facebook button)
@@ -69,7 +75,7 @@
 
 <br>
 
-**DB**
+### DB
  - Firebasedatabase, Referenece
  - database read (DataSnapshot) & write (FirebasePost, setValue)
  - data sort (Collection, Comparator)
@@ -77,7 +83,7 @@
 
 <br>
 
-### [Eunno-An](https://github.com/Eunno-An)
+## Eunno-An
 
 <br>
 
