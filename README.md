@@ -80,7 +80,13 @@
 ## Eunno-An 🐼
 
 
-**EMPTY**
+- Management
+  - Enroll Market the App
+- Game
+  - Game Playing Page(Logic, Animation)
+  - Timer
+- Animation
+  - Using Lottie Animation(Swithcing Animation dynamically)
 
 
 <br>
