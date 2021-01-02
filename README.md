@@ -37,9 +37,9 @@
 
 ## 역할분담
 
- - MinwooP : Ui
- - Kangwoosun : Login, DB
- - Eunno-An : PM, Timer
+ - MinwooP : ui, design
+ - Kangwoosun : login, dB
+ - Eunno-An : management, game, animation
 
 <br>
 
