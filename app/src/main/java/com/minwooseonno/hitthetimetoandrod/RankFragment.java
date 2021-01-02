@@ -93,23 +93,7 @@ public class RankFragment extends Fragment {
         View view1 = inflater.inflate(R.layout.fragment_rank, container, false);
         /* activity에서 fragment로 넘어오면서 mRecyclerView = findViewById(R.id.recycler1);
          * 아래 문장으로 바꾸어줌 */
-        SwipeRefreshLayout mSwipeRefreshLayout = view1.findViewById(R.id.swipe_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.commit();
 
-
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable(){
-                    @Override
-                    public void run() {
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 500);
-            }
-        });
 
         mRecyclerView = (RecyclerView) view1.findViewById(R.id.recycler1);
         /* mRecyclerView = container.findViewById(R.id.recycler1) ;
