@@ -99,14 +99,12 @@ public class UserFragment extends Fragment {
                 int flag = 0;
 
                 switch (loginType){
-                    case FACEBOOKLOGIN:
+                    case FACEBOOKLOGIN: // facebook logout flag
 
                         flag = ISLOGOUT | FACEBOOKLOGIN;
 
                         break;
-                    case GOOGLELOGIN:
-
-                        // google logout
+                    case GOOGLELOGIN: // google logout flag
 
                         flag = ISLOGOUT | GOOGLELOGIN;
 
