@@ -111,10 +111,6 @@ public class LoginActivity extends AppCompatActivity {
         //Initialization
         googleSignInBtn = findViewById(R.id.googleBtn);
 
-        //signout button
-        //googleSignOutBtn = findViewById(R.id.googleSignOutBtn);
-        //googleSignOutBtn.setVisibility(View.INVISIBLE);
-
         mFirebaseAuth_google = FirebaseAuth.getInstance();
 
 
@@ -138,22 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                 signInM();
             }
         });
-
-
-
-        /* google signout code
-        //Attach a onClickListener
-        googleSignOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                googleSignInClient.signOut();
-                googleSignOutBtn.setVisibility(View.INVISIBLE);
-                googleSignInBtn.setVisibility(View.VISIBLE);
-                Toast.makeText(LoginActivity.this,"you are logged out",Toast.LENGTH_LONG).show();
-            }
-        });
-        */
-
+        
 
         /*
          * facebook login
